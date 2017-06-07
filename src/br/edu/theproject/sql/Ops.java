@@ -98,7 +98,6 @@ public class Ops {
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			//stat.setString(1, prs.getNome());
 			//stat.setString(2, prs.getCPF());
-			stat.setInt(3, 3);
 			
 			stat.execute();
 			stat.close();
