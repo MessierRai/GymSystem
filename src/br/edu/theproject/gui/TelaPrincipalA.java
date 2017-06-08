@@ -29,7 +29,7 @@ public class TelaPrincipalA extends Application {
 		
 		Scene cena = new Scene(fundoPrincipal, 700, 500);
 		
-		Image logo = new Image("gymsystemrem.png");
+		Image logo = new Image("/br/edu/theproject/img/gymsystemrem.png");
 		ImageView iv = new ImageView(logo);
 		
 		MenuBar menuzin = new MenuBar(); //cria barra de menu

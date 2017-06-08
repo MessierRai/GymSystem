@@ -1,5 +1,6 @@
 package br.edu.theproject.gui;
 
+
 import br.edu.theproject.sql.Ops;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -35,7 +36,7 @@ public class Login extends Application {
 		malha.setPadding(new Insets(25, 25, 25, 25)); //define os pixels para as bordas
 		malha.setBackground(new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY))); // responsavel por colorir o GridPane
 		
-		Image icone = new Image("gymsystemicn.png");
+		Image icone = new Image("/br/edu/theproject/img/gymsystemicn.png");
 		
 		Scene cena = new Scene(malha, 300, 190);
 		
@@ -107,6 +108,8 @@ public class Login extends Application {
 		
 		primaryStage.setScene(cena);
 		primaryStage.setTitle("Log-In");
+		primaryStage.setResizable(false); // impede que a tela de "sobre" seja maximizada
+        primaryStage.sizeToScene();
 		primaryStage.getIcons().add(icone);
 		primaryStage.show();
 	}
