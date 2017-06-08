@@ -10,6 +10,8 @@ import java.util.Calendar;
 import com.mysql.jdbc.exceptions.jdbc4.*;
 
 import br.edu.theproject.jdbc.ConexaoSQL;
+import br.edu.theproject.molde.Atividade;
+import br.edu.theproject.molde.Bens;
 import br.edu.theproject.molde.Cliente;
 import br.edu.theproject.molde.Funcionario;
 import javafx.scene.control.Alert;
@@ -129,11 +131,52 @@ public class Ops {
 		
 	}
 	
-	public void cdBens() {
+	public void cdBens(Bens bn) {
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "INSERT INTO bens(nome, quantidade) VALUES (?, ?)";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setString(1, bn.getNome());
+			stat.setDouble(2, bn.getQuantidade());
+			
+			stat.execute();
+			stat.close();
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Cadastrado com sucesso!");
+			alert.showAndWait();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
 		
 	}
 	
-	public void cdAtividade() {
+	public void cdAtividade(Atividade atv) {
+		try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "INSERT INTO atividade(nome, valor) VALUES (?, ?)";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setString(1, atv.getNome());
+			stat.setDouble(2, atv.getValor());
+			
+			stat.execute();
+			stat.close();
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Cadastrado com sucesso!");
+			alert.showAndWait();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
 		
 	}
 	
