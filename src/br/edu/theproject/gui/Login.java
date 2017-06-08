@@ -1,6 +1,5 @@
 package br.edu.theproject.gui;
 
-
 import br.edu.theproject.sql.Ops;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -9,11 +8,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -65,8 +64,8 @@ public class Login extends Application {
 			@Override
 			public void handle(ActionEvent apertar) {
 				int id = Integer.parseInt(caixaId.getText());
-				int cdCargo  = new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
-				String senhaVld = new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
+				int cdCargo  = new Ops().obterCargo(id); //new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
+				String senhaVld = new Ops().getSenha(id);//new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
 				
 				if(caixaPwd.getText().equals(senhaVld)) { //compara se a senha inserida é igual a senha armazenada no BD
 					if(cdCargo == 1) { //decide para qual tela ir dependendo do cargo do dono do login (1: Gerente -- 2: Atendente)
