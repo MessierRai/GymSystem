@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 
 public class consultarCliente {
 
-	public void cds(GridPane malha) throws Exception {
+	public void consultar(GridPane malha) throws Exception {
 	
 		Text sds = new Text("Consultar Cliente ");
 		sds.setFont(Font.font(25)); //define o tamanho da fonte, pode-se colocar que fonte quer tambem

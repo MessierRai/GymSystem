@@ -114,7 +114,7 @@ public class TelaPrincipalG extends Application {
 				try {
 					fundoPrincipal.setCenter(malha);
 					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
-					cc.cds(malha);
+					cc.consultar(malha);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -138,16 +138,15 @@ public class TelaPrincipalG extends Application {
 		cdCli.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
-				/*
-				cadastrarBasic cc = new cadastrarBasic();
+				cadastroCliente cc = new cadastroCliente();
 				try {
 					fundoPrincipal.setCenter(malha);
-					malha.getChildren().clear();
-					cc.cds(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					cc.cCliente(malha);
+					
 				} catch (Exception e) {
-					e.printStackTrace();				
+					e.printStackTrace();
 				}
-				*/
 			}
 		});
 		//para voltar a tela inicial

@@ -92,7 +92,7 @@ public class TelaPrincipalA extends Application {
 				try {
 					fundoPrincipal.setCenter(malha);
 					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
-					cc.cds(malha);
+					cc.consultar(malha);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
