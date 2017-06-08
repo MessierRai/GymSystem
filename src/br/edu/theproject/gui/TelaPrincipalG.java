@@ -180,7 +180,7 @@ public class TelaPrincipalG extends Application {
 		fundoPrincipal.setCenter(iv);
 		
 		palco.setScene(cena);
-		palco.setTitle("Nome? Bem...");
+		palco.setTitle("GymSystem");
 		palco.show();
 		
 	}

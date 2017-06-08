@@ -7,10 +7,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -57,14 +59,16 @@ public class Login extends Application {
 		Button btnLog = new Button("Okay? Okay!");
 		
 		
-		btnLog.setOnAction(new EventHandler<ActionEvent>() {
+		btnLog.setOnAction(new EventHandler<ActionEvent>() { // qualquer comportamento antes de fazer login está aqui.
 			
 			@Override
 			public void handle(ActionEvent apertar) {
 				int id = Integer.parseInt(caixaId.getText());
-				int cdCargo  = new Ops().obterCargo(id);
+				int cdCargo  = new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
+				String senhaVld = new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
 				
-				if(cdCargo == 1) { //decide para qual tela ir dependendo do cargo do dono do login (1: Gerente -- 2: Atendente)
+				if(caixaPwd.getText().equals(senhaVld)) { //compara se a senha inserida é igual a senha armazenada no BD
+					if(cdCargo == 1) { //decide para qual tela ir dependendo do cargo do dono do login (1: Gerente -- 2: Atendente)
 						TelaPrincipalG telaG = new TelaPrincipalG();
 						try {
 							
@@ -73,7 +77,7 @@ public class Login extends Application {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-				}else if(cdCargo == 2) {
+					}else if(cdCargo == 2) {
 						TelaPrincipalA telaA = new TelaPrincipalA();
 						try {
 							
@@ -82,7 +86,14 @@ public class Login extends Application {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
+					}
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Erro");
+					alert.setHeaderText("Senha incorreta!");
+					alert.showAndWait();
 				}
+				
 			}
 		});
 		

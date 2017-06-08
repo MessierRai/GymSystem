@@ -231,6 +231,31 @@ public class Ops {
 		}
 	}
 	
+	public String getSenha(int id) {
+		String senha = null;
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT senha FROM login WHERE id_funcionarioFK = ?;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			
+			stat.setInt(1, id);
+			
+			ResultSet senhaRes = stat.executeQuery();
+			
+			while(senhaRes.next()) {
+				senha = senhaRes.getString("senha");
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return senha;
+	}
+	
 	public static void main(String[] args) {
 		/*
 		Calendar c = Calendar.getInstance();
@@ -242,6 +267,7 @@ public class Ops {
 		
 		cdCliente(cl);
 		*/
+		
 	}
 
 }

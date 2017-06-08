@@ -84,6 +84,22 @@ public class TelaPrincipalA extends Application {
 			}
 		});
 		
+		// consultar cliente
+		cnsCliente.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				consultarCliente cc = new consultarCliente();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					cc.cds(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
+		
 		inc.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
@@ -112,7 +128,7 @@ public class TelaPrincipalA extends Application {
 		fundoPrincipal.setCenter(iv);
 		
 		palco.setScene(cena);
-		palco.setTitle("Nome? Bem...");
+		palco.setTitle("GymSystem");
 		palco.show();
 		
 	}

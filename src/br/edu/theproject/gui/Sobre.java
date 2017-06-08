@@ -46,6 +46,7 @@ public class Sobre {
         palcoSobre.setScene(cena);
         palcoSobre.setResizable(false); // impede que a tela de "sobre" seja maximizada
         palcoSobre.sizeToScene();
+        palcoSobre.setTitle("Sobre Tudo");
         palcoSobre.show();
 	}
 
