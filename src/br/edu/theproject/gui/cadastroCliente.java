@@ -1,5 +1,7 @@
 package br.edu.theproject.gui;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -12,6 +14,11 @@ public class cadastroCliente {
 	
 	public void cCliente(GridPane malha) throws Exception {
 		
+		malha.setAlignment(Pos.CENTER_RIGHT);
+		malha.setHgap(10);
+		malha.setVgap(10);
+		malha.setPadding(new Insets(25, 25, 25, 220)); //define os pixels para as bordas
+		
 		Text sds = new Text("Cadastrar Cliente ");
 		sds.setFont(Font.font(25)); //define o tamanho da fonte, pode-se colocar que fonte quer tambem
 		GridPane.setConstraints(sds, 0, 0);
@@ -22,7 +29,7 @@ public class cadastroCliente {
 		TextField txtFld = new TextField();
 		GridPane.setConstraints(txtFld, 0, 2);
 			
-		Label n1Lbl = new Label("Endereço : ");
+		Label n1Lbl = new Label("EndereÃ§o : ");
 		GridPane.setConstraints(n1Lbl, 0, 3);
 			
 		TextField txtFld2 = new TextField();
@@ -66,6 +73,7 @@ public class cadastroCliente {
 		GridPane.setConstraints(btCds, 0, 15);
 		
 		malha.getChildren().addAll(sds,nLbl, txtFld, n1Lbl,n1Lb2,n1Lb3,n1Lb4,n1Lb5,n1Lb6,txtFld2, txtFld3,txtFld4,txtFld5,txtFld6, btCds,personal);
+
 
 	}
 }
