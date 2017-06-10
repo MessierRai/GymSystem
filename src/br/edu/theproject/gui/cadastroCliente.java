@@ -91,7 +91,7 @@ public class cadastroCliente {
 		ComboBox<String> personal = new ComboBox<String>(personalList);
         GridPane.setConstraints(personal, 0, 14);
         
-        Label exame = new Label("Está apto medicalmente: ");
+        Label exame = new Label("Os exames indicam aptidão fisica: ");
         GridPane.setConstraints(exame, 0, 15);
         
         ToggleGroup tgExame = new ToggleGroup();//define um grupo para evitar que os dois sejam selecionados.
