@@ -186,6 +186,35 @@ public class Ops {
 		
 	}
 	
+	public ArrayList<Bens> obterBens() {
+		ArrayList<Bens> listaBens = new ArrayList<Bens>();
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM bens;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet lBens = stat.executeQuery();
+			
+			while(lBens.next()) {
+				int id = lBens.getInt("id");
+				String nome = lBens.getString("nome");
+				int quantidade = lBens.getInt("quantidade");
+				Bens temp = new Bens(id, nome, quantidade);
+				
+				listaBens.add(temp);
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return listaBens;
+		
+	}
+	
 	public void cdAtividade(Atividade atv) {
 		try {
 			

@@ -154,6 +154,22 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		});
+		
+		cnsBens.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				consultaBens cb = new consultaBens();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					cb.cnsBens(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
+		
 		//para voltar a tela inicial
 		inc.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
