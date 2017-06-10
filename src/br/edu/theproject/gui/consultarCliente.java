@@ -1,5 +1,7 @@
 package br.edu.theproject.gui;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -10,6 +12,10 @@ import javafx.scene.text.Text;
 public class consultarCliente {
 
 	public void consultar(GridPane malha) throws Exception {
+		malha.setHgap(10);
+		malha.setVgap(10);
+		malha.setPadding(new Insets(15, 15, 15, 15));
+		malha.setAlignment(Pos.CENTER);
 	
 		Text sds = new Text("Consultar Cliente ");
 		sds.setFont(Font.font(25)); //define o tamanho da fonte, pode-se colocar que fonte quer tambem

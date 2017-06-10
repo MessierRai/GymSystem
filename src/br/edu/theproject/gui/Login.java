@@ -1,6 +1,5 @@
 package br.edu.theproject.gui;
 
-
 import br.edu.theproject.sql.Ops;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -9,12 +8,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -65,8 +66,8 @@ public class Login extends Application {
 			@Override
 			public void handle(ActionEvent apertar) {
 				int id = Integer.parseInt(caixaId.getText());
-				int cdCargo  = new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
-				String senhaVld = new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
+				int cdCargo  = new Ops().obterCargo(id); //new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
+				String senhaVld = new Ops().getSenha(id);//new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
 				
 				if(caixaPwd.getText().equals(senhaVld)) { //compara se a senha inserida é igual a senha armazenada no BD
 					if(cdCargo == 1) { //decide para qual tela ir dependendo do cargo do dono do login (1: Gerente -- 2: Atendente)
@@ -95,6 +96,45 @@ public class Login extends Application {
 					alert.showAndWait();
 				}
 				
+			}
+		});
+		
+		caixaPwd.setOnKeyPressed(new EventHandler<KeyEvent>() { // qualquer comportamento antes de fazer login está aqui.
+		
+			@Override
+			public void handle(KeyEvent evento) {
+				int id = Integer.parseInt(caixaId.getText());
+				int cdCargo  = new Ops().obterCargo(id); //new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
+				String senhaVld = new Ops().getSenha(id);//new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
+				
+				if(evento.getCode() == KeyCode.ENTER) {
+					if(caixaPwd.getText().equals(senhaVld)) { //compara se a senha inserida é igual a senha armazenada no BD
+						if(cdCargo == 1) { //decide para qual tela ir dependendo do cargo do dono do login (1: Gerente -- 2: Atendente)
+							TelaPrincipalG telaG = new TelaPrincipalG();
+							try {
+								
+								telaG.start(primaryStage);
+								
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}else if(cdCargo == 2) {
+							TelaPrincipalA telaA = new TelaPrincipalA();
+							try {
+								
+								telaA.start(primaryStage);
+								
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					} else {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("Erro");
+						alert.setHeaderText("Senha incorreta!");
+						alert.showAndWait();
+					}
+				}
 			}
 		});
 		

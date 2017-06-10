@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -134,13 +135,17 @@ public class TelaPrincipalG extends Application {
 				
 			}
 		});
-		
+		//cadastrar cliente
 		cdCli.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
 				cadastroCliente cc = new cadastroCliente();
 				try {
-					fundoPrincipal.setCenter(malha);
+					ScrollPane sp = new ScrollPane();
+					
+					fundoPrincipal.setCenter(sp);
+					sp.autosize();
+					sp.setContent(malha);
 					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
 					cc.cCliente(malha);
 					
@@ -149,6 +154,22 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		});
+		
+		cnsBens.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				consultaBens cb = new consultaBens();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					cb.cnsBens(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
+		
 		//para voltar a tela inicial
 		inc.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -180,6 +201,8 @@ public class TelaPrincipalG extends Application {
 		
 		palco.setScene(cena);
 		palco.setTitle("GymSystem");
+		palco.setResizable(false); // impede que a tela de "sobre" seja maximizada
+        palco.sizeToScene();
 		palco.show();
 		
 	}

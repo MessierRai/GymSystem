@@ -8,6 +8,8 @@ import br.edu.theproject.molde.Personal;
 import br.edu.theproject.sql.Ops;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,6 +20,11 @@ import javafx.scene.text.Text;
 public class cadastrarFuncionario {
 	
 	public void cds(GridPane malha, int who) throws Exception {
+		
+		malha.setHgap(10);
+		malha.setVgap(10);
+		malha.setPadding(new Insets(15, 15, 15, 15));
+		malha.setAlignment(Pos.CENTER);
 		
 		Text sds = new Text();
 		sds.setFont(Font.font(25)); //define o tamanho da fonte, pode-se colocar que fonte quer tambem

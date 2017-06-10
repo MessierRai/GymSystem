@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.mysql.jdbc.exceptions.jdbc4.*;
@@ -55,7 +56,7 @@ public class Ops {
 			stat.execute();
 			stat.close();
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirmação");
 			alert.setHeaderText("Cadastrado com sucesso!");
 			alert.showAndWait();
@@ -89,13 +90,43 @@ public class Ops {
 			stat.execute();
 			stat.close();
 			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Cadastrado com sucesso!");
+			alert.showAndWait();
+			
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
 		
 	}
 	
-	public static void cdCliente(Cliente cl) {
+	public ArrayList<String> getPersonal() {
+		ArrayList<String> personals = new ArrayList<String>();
+		
+		try {
+			Connection abrirConex = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT nome FROM funcionario WHERE id_cargoFK = 3";
+			
+			PreparedStatement stat = abrirConex.prepareStatement(sql);
+			
+			ResultSet prs = stat.executeQuery();
+			
+			while(prs.next()) {
+				personals.add(prs.getString("nome"));
+			}
+			
+			stat.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return personals;
+	}
+	
+	public void cdCliente(Cliente cl) {
 		try {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
@@ -112,14 +143,14 @@ public class Ops {
 			stat.setString(2, cl.getEndereco1());
 			stat.setString(3, cl.getEndereco2());
 			stat.setDate(4, new Date(data.getTimeInMillis()));
-			stat.setFloat(5, cl.getAltura());
+			stat.setDouble(5, cl.getAltura());
 			stat.setString(6, cl.getTurno());
 			stat.setInt(7, cl.getId_personalFK());
 			
 			stat.execute();
 			stat.close();
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirmação");
 			alert.setHeaderText("Cadastrado com sucesso!");
 			alert.showAndWait();
@@ -144,7 +175,7 @@ public class Ops {
 			stat.execute();
 			stat.close();
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirmação");
 			alert.setHeaderText("Cadastrado com sucesso!");
 			alert.showAndWait();
@@ -152,6 +183,35 @@ public class Ops {
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
+		
+	}
+	
+	public ArrayList<Bens> obterBens() {
+		ArrayList<Bens> listaBens = new ArrayList<Bens>();
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM bens;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet lBens = stat.executeQuery();
+			
+			while(lBens.next()) {
+				int id = lBens.getInt("id");
+				String nome = lBens.getString("nome");
+				int quantidade = lBens.getInt("quantidade");
+				Bens temp = new Bens(id, nome, quantidade);
+				
+				listaBens.add(temp);
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return listaBens;
 		
 	}
 	
@@ -169,7 +229,7 @@ public class Ops {
 			stat.execute();
 			stat.close();
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirmação");
 			alert.setHeaderText("Cadastrado com sucesso!");
 			alert.showAndWait();
@@ -229,6 +289,7 @@ public class Ops {
 		return cod;
 	}
 	
+	//obtem ID do funcionario passando um funcionario
 	public int obterId(Funcionario ord) {
 		int cod = 0;
 		try {
@@ -239,6 +300,34 @@ public class Ops {
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setString(1, ord.getNome());
+			
+			ResultSet codCargo = stat.executeQuery();
+			
+			while(codCargo.next()) {
+				cod = codCargo.getInt("id");
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return cod;
+		
+	}
+	
+	
+	//obtem ID do funcionario pelo nome
+	public int obterId(String nome) {
+		int cod = 0;
+		try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT id FROM funcionario WHERE nome = ?;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setString(1, nome);
 			
 			ResultSet codCargo = stat.executeQuery();
 			

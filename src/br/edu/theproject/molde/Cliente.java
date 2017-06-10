@@ -9,11 +9,11 @@ public class Cliente {
 	private int dt_nascDia;
 	private int dt_nascMes;
 	private int dt_nascAno;
-	private float altura;
+	private double altura;
 	private String turno;
 	private int id_personalFK;
 	
-	public Cliente(String nome, String endereco1, String endereco2, int dt_nascDia, int dt_nascMes, int dt_nascAno, float altura, String turno, int id_personalFK) {
+	public Cliente(String nome, String endereco1, String endereco2, int dt_nascDia, int dt_nascMes, int dt_nascAno, double altura, String turno, int id_personalFK) {
 		this.nome = nome;
 		this.endereco1 = endereco1;
 		this.endereco2 = endereco2;
@@ -46,7 +46,7 @@ public class Cliente {
 		return dt_nascAno;
 	}
 
-	public float getAltura() {
+	public double getAltura() {
 		return altura;
 	}
 	public String getTurno() {
