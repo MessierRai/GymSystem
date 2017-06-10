@@ -135,7 +135,7 @@ public class TelaPrincipalG extends Application {
 				
 			}
 		});
-		
+		//cadastrar cliente
 		cdCli.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
