@@ -170,6 +170,21 @@ public class TelaPrincipalG extends Application {
 			}
 		} );
 		
+		cdAtiv.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				cadastrarAtividade ca = new cadastrarAtividade();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					ca.cadastraAtividade(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		//para voltar a tela inicial
 		inc.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
