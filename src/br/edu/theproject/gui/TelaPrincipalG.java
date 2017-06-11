@@ -154,7 +154,7 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		});
-		
+		//consulta bens
 		cnsBens.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
