@@ -49,6 +49,7 @@ public class TelaPrincipalG extends Application {
 		// Consultar - Menu
 		Menu consulta = new Menu("Consultar");
 		MenuItem cnsCliente = new MenuItem("Consultar cliente");
+		MenuItem lsCliente = new MenuItem("Listar cliente");
 		MenuItem cnsBens = new MenuItem("Consultar bens");
 		MenuItem cnsFunc = new MenuItem("Consultar funcionário");
 		MenuItem cnsAtiv = new MenuItem("Consultar atividade");
@@ -122,6 +123,21 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		} );
+		//listar clientes
+		lsCliente.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				listarClientes lc = new listarClientes();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					lc.lClientes(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
 		//logoff
 		sair.setOnAction(new EventHandler<ActionEvent>() { //trata o evento de apertar no botão
 			@Override
@@ -185,7 +201,7 @@ public class TelaPrincipalG extends Application {
 			}
 		} );
 		
-		
+		// cadstrar atividade
 		cdAtiv.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
@@ -194,6 +210,21 @@ public class TelaPrincipalG extends Application {
 					fundoPrincipal.setCenter(malha);
 					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
 					ca.cadastraAtividade(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		cdBens.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				cadastroBens ca = new cadastroBens();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					ca.cadastraBens(malha);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -222,7 +253,7 @@ public class TelaPrincipalG extends Application {
 		//Add as coisas a seus devidos lugares
 		cadastrar.getItems().addAll(cdFunc, cdCli, cdBens, cdAtiv, inc); // add sub items ao menu
 		cdFunc.getItems().addAll(cdGer, cdAtd, cdPer);
-		consulta.getItems().addAll(cnsCliente, cnsBens, cnsFunc, cnsAtiv, cnsEst); // add sub items ao menu
+		consulta.getItems().addAll(cnsCliente, lsCliente, cnsBens, cnsFunc, cnsAtiv, cnsEst); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
 		
 		menuzin.getMenus().addAll(cadastrar, consulta, sobre); // add menua a barra

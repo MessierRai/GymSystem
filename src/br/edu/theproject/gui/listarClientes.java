@@ -1,7 +1,6 @@
 package br.edu.theproject.gui;
 
 
-import br.edu.theproject.molde.Bens;
 import br.edu.theproject.molde.Cliente;
 import br.edu.theproject.sql.Ops;
 import javafx.collections.FXCollections;
@@ -42,7 +41,7 @@ public class listarClientes {
 		colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		tabela.getColumns().add(colunaNome);
 		
-		TableColumn<Cliente, String> colunaEndereco = new TableColumn<>("Endereço");
+		TableColumn<Cliente, String> colunaEndereco = new TableColumn<>("EndereÃ§o");
 		colunaEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco1"));
 		tabela.getColumns().add(colunaEndereco);
 		
@@ -50,7 +49,7 @@ public class listarClientes {
 		colunaEndereco2.setCellValueFactory(new PropertyValueFactory<>("endereco2"));
 		tabela.getColumns().add(colunaEndereco2);
 	
-		TableColumn<Cliente, String> colunaDataNasc = new TableColumn<>("Data de Nascimento");
+		TableColumn<Cliente, String> colunaDataNasc = new TableColumn<>("Dt. Nasc.");
 		colunaDataNasc.setCellValueFactory(new PropertyValueFactory<>("dt_nasc"));
 		tabela.getColumns().add(colunaDataNasc);
 		

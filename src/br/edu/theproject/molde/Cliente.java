@@ -96,5 +96,10 @@ public class Cliente {
 	public void setId_personalFK(int id_personalFK) {
 		this.id_personalFK = id_personalFK;
 	}
+
+	public String getDt_nasc() {
+		return dt_nasc;
+	}
+
 	
 }
