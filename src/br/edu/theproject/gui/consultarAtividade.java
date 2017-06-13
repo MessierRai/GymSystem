@@ -1,6 +1,7 @@
 package br.edu.theproject.gui;
 
 import br.edu.theproject.molde.Atividade;
+import br.edu.theproject.molde.Bens;
 import br.edu.theproject.sql.Ops;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

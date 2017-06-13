@@ -162,13 +162,29 @@ public class TelaPrincipalG extends Application {
 				try {
 					fundoPrincipal.setCenter(malha);
 					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
-					cb.consultarB(malha);
+					cb.cnsBens(malha);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		} );
+		// Consultar atividades
+		cnsAtiv.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				consultarAtividade cb = new consultarAtividade();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					cb.lsAtividades(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
+		
 		
 		cdAtiv.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

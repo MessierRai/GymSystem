@@ -275,7 +275,7 @@ public class Ops {
 			while(lAtividade.next()) {
 				int id = lAtividade.getInt("id");
 				String nome = lAtividade.getString("nome");
-				int valor = lAtividade.getInt("valor");
+				double valor = lAtividade.getInt("valor");
 				Atividade temp = new Atividade(id, nome, valor);
 				
 				listaAtividades.add(temp);
