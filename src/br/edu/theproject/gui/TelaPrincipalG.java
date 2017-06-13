@@ -238,6 +238,22 @@ public class TelaPrincipalG extends Application {
 			}
 		});
 		
+		//alterar senha
+				altSenha.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent aperto) {
+						alterarSenha as = new alterarSenha();
+						try {
+							fundoPrincipal.setCenter(malha);
+							malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+							as.alterar(malha);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				} );
+				
 		//para voltar a tela inicial
 		inc.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

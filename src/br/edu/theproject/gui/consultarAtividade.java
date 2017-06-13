@@ -22,7 +22,7 @@ public class consultarAtividade {
 		malha.setPadding(new Insets(15, 15, 15, 15));
 		malha.setAlignment(Pos.CENTER);
 		
-		Text sds = new Text("Consultar Atividade");
+		Text sds = new Text("Listar Atividades");
 		sds.setFont(Font.font(25)); //define o tamanho da fonte, pode-se colocar que fonte quer tambem
 		sds.setTextAlignment(TextAlignment.CENTER);
 		GridPane.setConstraints(sds, 0, 0);
