@@ -103,6 +103,23 @@ public class TelaPrincipalA extends Application {
 				}
 			}
 		} );
+		
+		//consulta bens
+				cnsBens.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent aperto) {
+						consultaBens cb = new consultaBens();
+						try {
+							fundoPrincipal.setCenter(malha);
+							malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+							cb.cnsBens(malha);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				} );
+		
 		// volta ao inicio
 		inc.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
