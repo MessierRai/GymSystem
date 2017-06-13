@@ -3,6 +3,7 @@ package br.edu.theproject.molde;
 
 public class Cliente {
 	
+	private int id;
 	private String nome;
 	private String endereco1;
 	private String endereco2;
@@ -23,6 +24,22 @@ public class Cliente {
 		this.altura = altura;
 		this.turno = turno;
 		this.id_personalFK = id_personalFK;
+	}
+	
+	public Cliente(int id,String nome, String endereco1, String endereco2, int dt_nascDia, int dt_nascMes, int dt_nascAno, double altura, String turno, int id_personalFK) {
+		this.id = id;
+		this.nome = nome;
+		this.endereco1 = endereco1;
+		this.endereco2 = endereco2;
+		this.dt_nascDia = dt_nascDia;
+		this.dt_nascMes = dt_nascMes;
+		this.dt_nascAno = dt_nascAno;
+		this.altura = altura;
+		this.turno = turno;
+		this.id_personalFK = id_personalFK;
+	}
+	public int getId(){
+		return id;
 	}
 	
 	public String getNome() {
@@ -62,6 +79,4 @@ public class Cliente {
 		this.id_personalFK = id_personalFK;
 	}
 	
-	
-
 }
