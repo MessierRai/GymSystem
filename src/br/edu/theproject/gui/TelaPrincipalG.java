@@ -37,23 +37,29 @@ public class TelaPrincipalG extends Application {
 		
 		//Cadastrar - Menu
 		Menu cadastrar = new Menu("Cadastrar"); // cria menu
-		Menu cdFunc = new Menu("Cadastrar funcion√°rio");
+		Menu cdFunc = new Menu("Cadastrar Funcion·rio");
 		MenuItem cdGer = new MenuItem("Gerente");
 		MenuItem cdAtd = new MenuItem("Atendente");// cria sub items do menu
 		MenuItem cdPer = new MenuItem("Personal");
-		MenuItem cdCli = new MenuItem("Cadastrar cliente");
-		MenuItem cdBens = new MenuItem("Cadastrar bens");
-		MenuItem cdAtiv = new MenuItem("Cadastrar atividade");
+		MenuItem cdCli = new MenuItem("Cadastrar Cliente");
+		MenuItem cdBens = new MenuItem("Cadastrar Bens");
+		MenuItem cdAtiv = new MenuItem("Cadastrar Atividade");
 		MenuItem inc = new MenuItem("Inicio");
 		
 		// Consultar - Menu
 		Menu consulta = new Menu("Consultar");
-		MenuItem cnsCliente = new MenuItem("Consultar cliente");
-		MenuItem lsCliente = new MenuItem("Listar cliente");
-		MenuItem cnsBens = new MenuItem("Consultar bens");
-		MenuItem cnsFunc = new MenuItem("Consultar funcion√°rio");
-		MenuItem cnsAtiv = new MenuItem("Consultar atividade");
+		MenuItem cnsCliente = new MenuItem("Consultar Cliente");
+		MenuItem lsCliente = new MenuItem("Listar Clientes");
+		MenuItem cnsBens = new MenuItem("Listar Bens");
+		MenuItem cnsFunc = new MenuItem("Listar Funcion·rios");
+		MenuItem cnsAtiv = new MenuItem("Listar Atividades");
 		MenuItem cnsEst = new MenuItem("Consultar estatisticas");
+		
+		// Alterar - Menu
+		Menu alterar = new Menu("Atualizar");
+		MenuItem altSenha = new MenuItem("Alterar Senha");
+		MenuItem altCliente = new MenuItem("Atualizar Dados Cliente");
+				
 		
 		// Sobre - Menu
 		Menu sobre = new Menu("Sobre");
@@ -256,7 +262,10 @@ public class TelaPrincipalG extends Application {
 		consulta.getItems().addAll(cnsCliente, lsCliente, cnsBens, cnsFunc, cnsAtiv, cnsEst); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
 		
-		menuzin.getMenus().addAll(cadastrar, consulta, sobre); // add menua a barra
+		alterar.getItems().addAll(altSenha, altCliente);
+		
+		menuzin.getMenus().addAll(cadastrar, consulta, alterar,  sobre); // add menua a barra
+		
 		
 		fundoPrincipal.setTop(menuzin); // seta a barra de menu na borda de cima do BorderPane
 		fundoPrincipal.setCenter(iv);

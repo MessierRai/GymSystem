@@ -37,14 +37,19 @@ public class TelaPrincipalA extends Application {
 		
 		//Cadastrar - Menu
 		Menu cadastrar = new Menu("Cadastrar"); // cria menu
-		MenuItem cdCli = new MenuItem("Cadastrar cliente");
+		MenuItem cdCli = new MenuItem("Cadastrar Cliente");
 		MenuItem inc = new MenuItem("Inicio");
 		
 		// Consultar - Menu
 		Menu consulta = new Menu("Consultar");
 		MenuItem cnsCliente = new MenuItem("Consultar cliente");
-		MenuItem cnsBens = new MenuItem("Consultar bens");
-		MenuItem cnsAtiv = new MenuItem("Consultar atividade");
+		MenuItem cnsBens = new MenuItem("Listar Bens");
+		MenuItem cnsAtiv = new MenuItem("Listar Atividade");
+		
+		// Alterar - Menu
+		Menu alterar = new Menu("Atualizar");
+		MenuItem altSenha = new MenuItem("Alterar Senha");
+		MenuItem altCliente = new MenuItem("Atualizar Dados Cliente");
 		
 		// Sobre - Menu
 		Menu sobre = new Menu("Sobre");
@@ -159,7 +164,9 @@ public class TelaPrincipalA extends Application {
 		consulta.getItems().addAll(cnsCliente, cnsBens, cnsAtiv); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
 		
-		menuzin.getMenus().addAll(cadastrar, consulta, sobre); // add menua a barra
+		alterar.getItems().addAll(altSenha, altCliente);
+		
+		menuzin.getMenus().addAll(cadastrar, consulta, alterar, sobre); // add menua a barra
 		
 		fundoPrincipal.setTop(menuzin); // seta a barra de menu na borda de cima do BorderPane
 		fundoPrincipal.setCenter(iv);
