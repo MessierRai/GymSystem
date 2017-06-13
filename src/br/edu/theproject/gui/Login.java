@@ -27,6 +27,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Login extends Application {
+	
+	public int id;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -65,7 +67,7 @@ public class Login extends Application {
 			
 			@Override
 			public void handle(ActionEvent apertar) {
-				int id = Integer.parseInt(caixaId.getText());
+				id = Integer.parseInt(caixaId.getText());
 				int cdCargo  = new Ops().obterCargo(id); //new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
 				String senhaVld = new Ops().getSenha(id);//new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
 				
@@ -103,7 +105,7 @@ public class Login extends Application {
 		
 			@Override
 			public void handle(KeyEvent evento) {
-				int id = Integer.parseInt(caixaId.getText());
+				id = Integer.parseInt(caixaId.getText());
 				int cdCargo  = new Ops().obterCargo(id); //new Ops().obterCargo(id); // retorna o cod do cargo, baseado no id do funcionario
 				String senhaVld = new Ops().getSenha(id);//new Ops().getSenha(id); // retorna a senha, baseado no id do funcionario
 				

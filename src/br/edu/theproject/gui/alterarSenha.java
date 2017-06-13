@@ -1,5 +1,8 @@
 package br.edu.theproject.gui;
 
+import br.edu.theproject.sql.Ops;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -27,7 +30,7 @@ public class alterarSenha {
 		TextField txtFld = new TextField();
 		GridPane.setConstraints(txtFld, 0, 2);
 			
-		Label n1Lbl = new Label("Nova Senha (6 dígitos): ");
+		Label n1Lbl = new Label("Nova Senha (6 dï¿½gitos): ");
 		GridPane.setConstraints(n1Lbl, 0, 3);
 			
 		TextField txtFld2 = new TextField();
@@ -35,6 +38,24 @@ public class alterarSenha {
 		
 		Button btCds = new Button("Salvar");
 		GridPane.setConstraints(btCds, 0, 5);
+		
+		btCds.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				String senhaAtual = txtFld.getText();
+				String senhaNova = txtFld2.getText();
+				String senhaVld = new Ops().getSenha(new Login().id);
+				System.out.println(new Login().id);
+				
+				if(senhaAtual.equals(senhaVld)) {
+					new Ops().altSenha(senhaNova);
+				}else {
+					System.out.println("ExcessÃ£o");
+				}
+				
+			}
+		});
 		
 		malha.getChildren().addAll(sds,nLbl, txtFld, n1Lbl, txtFld2, btCds);
 

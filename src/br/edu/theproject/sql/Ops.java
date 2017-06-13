@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 import com.mysql.jdbc.exceptions.jdbc4.*;
 
+import br.edu.theproject.gui.Login;
 import br.edu.theproject.jdbc.ConexaoSQL;
 import br.edu.theproject.molde.Atividade;
 import br.edu.theproject.molde.Bens;
@@ -469,6 +470,32 @@ public class Ops {
 			e.printStackTrace();
 		}
 		return senha;
+	}
+	
+	public void altSenha(String senha) {
+		int idAtual = new Login().id;
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "UPDATE login SET senha = ? where id_funcionarioFK = ?;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			
+			stat.setString(1, senha);
+			stat.setInt(2, idAtual);
+			
+			stat.execute();
+			stat.close();
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Cadastrado com sucesso!");
+			alert.showAndWait();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {
