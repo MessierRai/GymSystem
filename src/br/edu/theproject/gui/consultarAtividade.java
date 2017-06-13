@@ -29,7 +29,7 @@ public class consultarAtividade {
 		
 		TableView<Atividade> tabela = new TableView<>();
 		
-		ObservableList<Atividade> dados = FXCollections.observableArrayList(new Ops().getAtividade());
+		ObservableList<Atividade> dados = FXCollections.observableArrayList(new Ops().lsAtividade());
 		
 		tabela.setItems(dados);
 		

@@ -29,7 +29,7 @@ public class consultaBens {
 		
 		TableView<Bens> tabela = new TableView<>();
 		
-		ObservableList<Bens> dados = FXCollections.observableArrayList(new Ops().obterBens());
+		ObservableList<Bens> dados = FXCollections.observableArrayList(new Ops().lsBens());
 		
 		tabela.setItems(dados);
 		

@@ -101,30 +101,6 @@ public class Ops {
 		
 	}
 	
-	public ArrayList<String> getPersonal() {
-		ArrayList<String> personals = new ArrayList<String>();
-		
-		try {
-			Connection abrirConex = ConexaoSQL.getInstance().getConnection();
-			
-			String sql = "SELECT nome FROM funcionario WHERE id_cargoFK = 3";
-			
-			PreparedStatement stat = abrirConex.prepareStatement(sql);
-			
-			ResultSet prs = stat.executeQuery();
-			
-			while(prs.next()) {
-				personals.add(prs.getString("nome"));
-			}
-			
-			stat.close();
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return personals;
-	}
 	
 	public void cdCliente(Cliente cl) {
 		try {
@@ -186,35 +162,6 @@ public class Ops {
 		
 	}
 	
-	public ArrayList<Bens> obterBens() {
-		ArrayList<Bens> listaBens = new ArrayList<Bens>();
-		
-		try {
-			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
-			
-			String sql = "SELECT * FROM bens;";
-			
-			PreparedStatement stat = abrirConx.prepareStatement(sql);
-			ResultSet lBens = stat.executeQuery();
-			
-			while(lBens.next()) {
-				int id = lBens.getInt("id");
-				String nome = lBens.getString("nome");
-				int quantidade = lBens.getInt("quantidade");
-				Bens temp = new Bens(id, nome, quantidade);
-				
-				listaBens.add(temp);
-			}
-			
-			stat.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();		
-		}
-		return listaBens;
-		
-	}
-	
 	public void cdAtividade(Atividade atv) {
 		try {
 			
@@ -248,7 +195,41 @@ public class Ops {
 		
 	}
 	
-	public void lsClientes() {
+	public ArrayList<Cliente> lsClientes() {
+		
+		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM cliente;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet lCliente = stat.executeQuery();
+			
+			while(lCliente.next()) {
+				int id = lCliente.getInt("id");
+				String nome = lCliente.getString("nome");
+				String endereco1 = lCliente.getString("endereco1");
+				String endereco2 = lCliente.getString("endereco2");
+				String dt_nasc = lCliente.getString("dt_nasc");
+				double altura = lCliente.getDouble("altura");
+				String turno = lCliente.getString("turno");
+				int id_personalFK = lCliente.getInt("id_personalFK");
+				String nomepersonal = new Ops().lsNomePersonal(id_personalFK);
+				
+				
+				Cliente temp = new Cliente(id, nome, endereco1, endereco2, dt_nasc, altura, turno, nomepersonal);
+				
+				listaClientes.add(temp);
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return listaClientes;
 		
 	}
 	
@@ -256,11 +237,87 @@ public class Ops {
 		
 	}
 	
-	public void lsBens() {
+	public ArrayList<String> lsPersonal() {
+		ArrayList<String> personals = new ArrayList<String>();
+		
+		try {
+			Connection abrirConex = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT nome FROM funcionario WHERE id_cargoFK = 3";
+			
+			PreparedStatement stat = abrirConex.prepareStatement(sql);
+			
+			ResultSet prs = stat.executeQuery();
+			
+			while(prs.next()) {
+				personals.add(prs.getString("nome"));
+			}
+			
+			stat.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return personals;
+	}
+	
+	public String lsNomePersonal(int id) {
+		String nome = null;
+		try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT nome FROM funcionario WHERE id = ?;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setInt(1, id);
+			
+			ResultSet nomePrs = stat.executeQuery();
+			
+			while(nomePrs.next()) {
+				nome = nomePrs.getString("nome");
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return nome;
 		
 	}
 	
-	public ArrayList<Atividade> getAtividade() {
+	public ArrayList<Bens> lsBens() {
+		ArrayList<Bens> listaBens = new ArrayList<Bens>();
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM bens;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet lBens = stat.executeQuery();
+			
+			while(lBens.next()) {
+				int id = lBens.getInt("id");
+				String nome = lBens.getString("nome");
+				int quantidade = lBens.getInt("quantidade");
+				Bens temp = new Bens(id, nome, quantidade);
+				
+				listaBens.add(temp);
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return listaBens;
+		
+	}
+	
+	public ArrayList<Atividade> lsAtividade() {
 		
 		ArrayList<Atividade> listaAtividades = new ArrayList<Atividade>();
 		
@@ -286,7 +343,7 @@ public class Ops {
 		}
 		return listaAtividades;
 		
-}
+	}
 		
 
 	

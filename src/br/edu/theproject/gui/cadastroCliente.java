@@ -87,7 +87,7 @@ public class cadastroCliente {
 		Label n1Lb6 = new Label("Personal: ");
 		GridPane.setConstraints(n1Lb6, 0, 13);
 		
-		ObservableList<String> personalList = FXCollections.observableList(new Ops().getPersonal());
+		ObservableList<String> personalList = FXCollections.observableList(new Ops().lsPersonal());
 		ComboBox<String> personal = new ComboBox<String>(personalList);
         GridPane.setConstraints(personal, 0, 14);
         
