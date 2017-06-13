@@ -162,7 +162,7 @@ public class TelaPrincipalG extends Application {
 				try {
 					fundoPrincipal.setCenter(malha);
 					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
-					cb.cnsBens(malha);
+					cb.consultarB(malha);
 					
 				} catch (Exception e) {
 					e.printStackTrace();

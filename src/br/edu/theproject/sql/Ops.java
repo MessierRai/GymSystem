@@ -260,9 +260,35 @@ public class Ops {
 		
 	}
 	
-	public void lsAtividades() {
+	public ArrayList<Atividade> getAtividade() {
 		
-	}
+		ArrayList<Atividade> listaAtividades = new ArrayList<Atividade>();
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM atividade;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet lAtividade = stat.executeQuery();
+			
+			while(lAtividade.next()) {
+				int id = lAtividade.getInt("id");
+				String nome = lAtividade.getString("nome");
+				int valor = lAtividade.getInt("valor");
+				Atividade temp = new Atividade(id, nome, valor);
+				
+				listaAtividades.add(temp);
+			}
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return listaAtividades;
+		
+}
+		
+
 	
 	public int obterCargo(int id) {
 		int cod = 0;
