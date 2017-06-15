@@ -45,8 +45,8 @@ public class alterarSenha {
 			public void handle(ActionEvent event) {
 				String senhaAtual = txtFld.getText();
 				String senhaNova = txtFld2.getText();
-				String senhaVld = new Ops().getSenha(new Login().id);
-				System.out.println(new Login().id);
+				String senhaVld = new Ops().getSenha(new TelaPrincipalG().getIdAtual());
+				System.out.println(new TelaPrincipalG().getIdAtual());
 				
 				if(senhaAtual.equals(senhaVld)) {
 					new Ops().altSenha(senhaNova);

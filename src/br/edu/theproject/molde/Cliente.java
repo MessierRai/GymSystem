@@ -53,6 +53,17 @@ public class Cliente {
 		this.turno = turno;
 		this.nomepersonal = nomepersonal;
 	}
+	
+	// usado para listar clientes individualmente
+	public Cliente(String nome, String endereco1, String endereco2, String dt_nasc, double altura, String turno, String nomepersonal) {
+		this.nome = nome;
+		this.endereco1 = endereco1;
+		this.endereco2 = endereco2;
+		this.dt_nasc = dt_nasc;
+		this.altura = altura;
+		this.turno = turno;
+		this.nomepersonal = nomepersonal;
+	}
 	public int getId(){
 		return id;
 	}
@@ -92,9 +103,6 @@ public class Cliente {
 	}
 	public String getNomepersonal(){
 		return nomepersonal;
-	}
-	public void setId_personalFK(int id_personalFK) {
-		this.id_personalFK = id_personalFK;
 	}
 
 	public String getDt_nasc() {

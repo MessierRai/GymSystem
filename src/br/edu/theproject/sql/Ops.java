@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 import com.mysql.jdbc.exceptions.jdbc4.*;
 
-import br.edu.theproject.gui.Login;
+import br.edu.theproject.gui.TelaPrincipalG;
 import br.edu.theproject.jdbc.ConexaoSQL;
 import br.edu.theproject.molde.Atividade;
 import br.edu.theproject.molde.Bens;
@@ -223,6 +223,42 @@ public class Ops {
 				Cliente temp = new Cliente(id, nome, endereco1, endereco2, dt_nasc, altura, turno, nomepersonal);
 				
 				listaClientes.add(temp);
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return listaClientes;
+		
+	}
+	
+	//Obtem dados do cliente usado o id dele
+	public Cliente lsUmCliente(int idCliente) {
+		
+		Cliente listaClientes = null;
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM cliente WHERE id = ?";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setInt(1, idCliente);
+			ResultSet lCliente = stat.executeQuery();
+			
+			while(lCliente.next()) {
+				String nome = lCliente.getString("nome");
+				String endereco1 = lCliente.getString("endereco1");
+				String endereco2 = lCliente.getString("endereco2");
+				String dt_nasc = lCliente.getString("dt_nasc");
+				double altura = lCliente.getDouble("altura");
+				String turno = lCliente.getString("turno");
+				int id_personalFK = lCliente.getInt("id_personalFK");
+				String nomepersonal = new Ops().lsNomePersonal(id_personalFK);
+				
+				listaClientes = new Cliente(nome, endereco1, endereco2, dt_nasc, altura, turno, nomepersonal);
 			}
 			
 			stat.close();
@@ -473,7 +509,7 @@ public class Ops {
 	}
 	
 	public void altSenha(String senha) {
-		int idAtual = new Login().id;
+		int idAtual = new TelaPrincipalG().getIdAtual();
 		
 		try {
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();

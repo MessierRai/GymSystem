@@ -17,6 +17,16 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TelaPrincipalG extends Application {
+	
+	private int idAtual;
+
+	public int getIdAtual() {
+		return idAtual;
+	}
+
+	public void setIdAtual(int idAtual) {
+		this.idAtual = idAtual;
+	}
 
 	@Override
 	public void start(Stage palco) throws Exception {
@@ -37,7 +47,7 @@ public class TelaPrincipalG extends Application {
 		
 		//Cadastrar - Menu
 		Menu cadastrar = new Menu("Cadastrar"); // cria menu
-		Menu cdFunc = new Menu("Cadastrar Funcionário");
+		Menu cdFunc = new Menu("Cadastrar Funcionï¿½rio");
 		MenuItem cdGer = new MenuItem("Gerente");
 		MenuItem cdAtd = new MenuItem("Atendente");// cria sub items do menu
 		MenuItem cdPer = new MenuItem("Personal");
@@ -51,7 +61,7 @@ public class TelaPrincipalG extends Application {
 		MenuItem cnsCliente = new MenuItem("Consultar Cliente");
 		MenuItem lsCliente = new MenuItem("Listar Clientes");
 		MenuItem cnsBens = new MenuItem("Listar Bens");
-		MenuItem cnsFunc = new MenuItem("Listar Funcionários");
+		MenuItem cnsFunc = new MenuItem("Listar Funcionï¿½rios");
 		MenuItem cnsAtiv = new MenuItem("Listar Atividades");
 		MenuItem cnsEst = new MenuItem("Consultar estatisticas");
 		
