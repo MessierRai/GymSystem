@@ -276,8 +276,7 @@ public class TelaPrincipalG extends Application {
 		sobreNois.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
-				@SuppressWarnings("unused")
-				Sobre sobre = new Sobre(palco);
+				new Sobre(palco);
 			}
 		});
 		

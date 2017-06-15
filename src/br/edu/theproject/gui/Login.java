@@ -48,7 +48,6 @@ public class Login extends Application {
 		Label userLbl = new Label("Usuário: ");
 		GridPane.setConstraints(userLbl, 0, 1);
 		
-		
 		TextField caixaId = new TextField();
 		GridPane.setConstraints(caixaId, 1, 1);
 		

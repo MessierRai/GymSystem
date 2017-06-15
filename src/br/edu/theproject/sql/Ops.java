@@ -263,7 +263,7 @@ public class Ops {
 			
 			stat.close();
 			
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			e.printStackTrace();		
 		}
 		return listaClientes;
