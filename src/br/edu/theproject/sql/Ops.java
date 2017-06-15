@@ -269,7 +269,35 @@ public class Ops {
 		
 	}
 	
-	public void lsFuncionarios() {
+	public ArrayList<Funcionario> lsFuncionarios() {
+		ArrayList<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+		
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT * FROM funcionario;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet lFuncionario = stat.executeQuery();
+			
+			while(lFuncionario.next()) {
+				int id = lFuncionario.getInt("id");
+				String nome = lFuncionario.getString("nome");
+				String cpf = lFuncionario.getString("cpf");
+				int idCargo = lFuncionario.getInt("id_cargoFK");
+				
+				Funcionario temp = new Funcionario(id, nome, cpf, idCargo) {
+				};
+				
+				listaFuncionarios.add(temp);
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return listaFuncionarios;
 		
 	}
 	
