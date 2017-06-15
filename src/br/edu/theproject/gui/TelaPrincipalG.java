@@ -19,24 +19,24 @@ import javafx.stage.Stage;
 public class TelaPrincipalG extends Application {
 	
 	private int idAtual;
+	
+	public void setIdAtual(int id) {
+		this.idAtual = id;
+	}
 
 	public int getIdAtual() {
 		return idAtual;
 	}
 
-	public void setIdAtual(int idAtual) {
-		this.idAtual = idAtual;
-	}
-
 	@Override
 	public void start(Stage palco) throws Exception {
 		BorderPane fundoPrincipal = new BorderPane();
-		
 		GridPane malha = new GridPane();
 		malha.setHgap(10);
 		malha.setVgap(10);
 		malha.setPadding(new Insets(15, 15, 15, 15));
 		malha.setAlignment(Pos.CENTER);
+		
 		
 		Scene cena = new Scene(fundoPrincipal, 700, 500);
 		
@@ -249,20 +249,20 @@ public class TelaPrincipalG extends Application {
 		});
 		
 		//alterar senha
-				altSenha.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent aperto) {
-						alterarSenha as = new alterarSenha();
-						try {
-							fundoPrincipal.setCenter(malha);
-							malha.getChildren().clear();  //se nao apagar a malha, dá merda.
-							as.alterar(malha);
+		altSenha.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				alterarSenha as = new alterarSenha();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					as.alterar(malha);
 							
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				} );
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
 				
 		//para voltar a tela inicial
 		inc.setOnAction(new EventHandler<ActionEvent>() {

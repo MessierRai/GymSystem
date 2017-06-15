@@ -10,7 +10,6 @@ import java.util.Calendar;
 
 import com.mysql.jdbc.exceptions.jdbc4.*;
 
-import br.edu.theproject.gui.TelaPrincipalG;
 import br.edu.theproject.jdbc.ConexaoSQL;
 import br.edu.theproject.molde.Atividade;
 import br.edu.theproject.molde.Bens;
@@ -509,8 +508,8 @@ public class Ops {
 	}
 	
 	public void altSenha(String senha) {
-		int idAtual = new TelaPrincipalG().getIdAtual();
 		
+		int idAtual = 0;
 		try {
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
