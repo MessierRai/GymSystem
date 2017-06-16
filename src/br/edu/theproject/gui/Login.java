@@ -41,11 +41,11 @@ public class Login extends Application {
 		
 		Scene cena = new Scene(malha, 300, 190);
 		
-		Text sds = new Text("Ol√°!");
+		Text sds = new Text("Ol·!");
 		sds.setFont(Font.font(25)); //define o tamanho da fonte, pode-se colocar que fonte quer tambem
 		GridPane.setConstraints(sds, 0, 0);
 		
-		Label userLbl = new Label("Usu√°rio: ");
+		Label userLbl = new Label("Usu·rio: ");
 		GridPane.setConstraints(userLbl, 0, 1);
 		
 		TextField caixaId = new TextField();
