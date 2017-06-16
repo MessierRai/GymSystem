@@ -408,8 +408,95 @@ public class Ops {
 		return listaAtividades;
 		
 	}
+	
+	public void cdCliAtiv(int idCli, int idAtiv) {
+		try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "INSERT INTO cliente_atividade(id_clienteFK, id_atividadeFK) VALUES (?, ?)";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setInt(1, idCli);
+			stat.setInt(2, idAtiv);
+			
+			stat.execute();
+			stat.close();
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Associado com sucesso!");
+			alert.showAndWait();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+	}
+	
+	public void addClienteMensalidade(int id) {
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "INSERT INTO mensalidade(id_clienteFK, mensalidade) VALUES (?, ?)";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setInt(1, id);
+			stat.setDouble(2, 10.0);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 		
-
+	public void addValorMensalidade(int id, double valor) {
+		try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "INSERT INTO mensalidade(mensalidade) VALUES (?) WHERE id_clienteFK = ?";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			double valorAtual = obterValorMensalidade(id);
+			stat.setDouble(1, (valorAtual + valor));
+			stat.setInt(2, id);
+			
+			stat.execute();
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+	}
+	
+	public double obterValorMensalidade(int id) { //o nome é auto-explicativo
+			double valor = 0;
+			try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT mensalidade FROM mensalidade WHERE id_clienteFK = ?";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setInt(1, id);
+			ResultSet valorMens = stat.executeQuery();
+			
+			while(valorMens.next()) {
+				valor = valorMens.getDouble("mensalidade");
+			}
+			
+			stat.execute();
+			stat.close();
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Associado com sucesso!");
+			alert.showAndWait();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return valor;
+	}
 	
 	public int obterCargo(int id) {
 		int cod = 0;
@@ -480,6 +567,32 @@ public class Ops {
 			
 			while(codCargo.next()) {
 				cod = codCargo.getInt("id");
+			}
+			
+			stat.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return cod;
+		
+	}
+	
+	public int obterIdCli(String nome) {
+		int cod = 0;
+		try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT id FROM cliente WHERE nome = ?;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setString(1, nome);
+			
+			ResultSet codCli = stat.executeQuery();
+			
+			while(codCli.next()) {
+				cod = codCli.getInt("id");
 			}
 			
 			stat.close();

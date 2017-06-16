@@ -54,6 +54,7 @@ public class TelaPrincipalG extends Application {
 		MenuItem cdCli = new MenuItem("Cadastrar Cliente");
 		MenuItem cdBens = new MenuItem("Cadastrar Bens");
 		MenuItem cdAtiv = new MenuItem("Cadastrar Atividade");
+		MenuItem cdCliAtiv = new MenuItem("Associar Cliente-Atividade");
 		MenuItem inc = new MenuItem("Inicio");
 		
 		// Consultar - Menu
@@ -233,6 +234,22 @@ public class TelaPrincipalG extends Application {
 			}
 		});
 		
+		cdCliAtiv.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				AssociarCliAtiv aca = new AssociarCliAtiv();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					aca.associar(malha);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		
 		cdBens.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
@@ -282,7 +299,7 @@ public class TelaPrincipalG extends Application {
 		
 		
 		//Add as coisas a seus devidos lugares
-		cadastrar.getItems().addAll(cdFunc, cdCli, cdBens, cdAtiv, inc); // add sub items ao menu
+		cadastrar.getItems().addAll(cdFunc, cdCli, cdBens, cdAtiv, cdCliAtiv, inc); // add sub items ao menu
 		cdFunc.getItems().addAll(cdGer, cdAtd, cdPer);
 		consulta.getItems().addAll(cnsCliente, lsCliente, cnsBens, cnsFunc, cnsAtiv, cnsEst); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu

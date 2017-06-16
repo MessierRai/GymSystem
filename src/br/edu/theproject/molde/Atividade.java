@@ -28,4 +28,9 @@ public class Atividade {
 		this.valor = valor;
 	}
 	
+	@Override
+	public String toString() {
+		return this.nome + " - " + "R$ " + this.valor;
+	}
+	
 }

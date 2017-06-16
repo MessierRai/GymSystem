@@ -118,6 +118,8 @@ public class cadastroCliente {
 					Ops s = new Ops();
 					
 					s.cdCliente(c);
+					int idCli = s.obterIdCli(c.getNome());
+					s.addClienteMensalidade(idCli);
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Informação");
