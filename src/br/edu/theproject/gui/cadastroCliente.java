@@ -90,8 +90,7 @@ public class cadastroCliente {
 		horarios.add("Tarde");
 		horarios.add("Noite");
 		
-		ObservableList<String> turnolist = FXCollections.observableArrayList(horarios
-			    );
+		ObservableList<String> turnolist = FXCollections.observableArrayList(horarios);
 		ComboBox<String> turno = new ComboBox<String>(turnolist);
         GridPane.setConstraints(turno, 0, 12);
 		
@@ -101,8 +100,6 @@ public class cadastroCliente {
 		ObservableList<String> personalList = FXCollections.observableList(new Ops().lsPersonal());
 		ComboBox<String> personal = new ComboBox<String>(personalList);
         GridPane.setConstraints(personal, 0, 14);
-        
-        
         
         Label exame = new Label("Os exames indicam aptidão fisica: ");
         GridPane.setConstraints(exame, 0, 15);
@@ -131,8 +128,6 @@ public class cadastroCliente {
 					Ops s = new Ops();
 					
 					s.cdCliente(c);
-					int idCli = s.obterIdCli(c.getNome());
-					s.addClienteMensalidade(idCli);
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Informação");

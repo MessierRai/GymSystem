@@ -126,14 +126,25 @@ public class Ops {
 			stat.execute();
 			stat.close();
 			
+			int idCli = obterIdCliente(cl.getNome(), cl.getEndereco1());
+			
+			String sql2 = "INSERT INTO mensalidade(id_clienteFK, mensalidade) VALUES (?, ?);";
+			
+			PreparedStatement stat2 = abrirConx.prepareStatement(sql2);
+			stat2.setInt(1, idCli);
+			stat2.setDouble(2, 10.0);
+			
+			stat2.execute();
+			stat2.close();
+			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirmação");
 			alert.setHeaderText("Cadastrado com sucesso!");
+			alert.setContentText("ID: " + idCli + "\nNome: " + cl.getNome());
 			alert.showAndWait();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		}
 		
 	}
@@ -191,15 +202,22 @@ public class Ops {
 		try {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
-			
-			String sql = "DELETE FROM cliente WHERE id=?";
+			String sql = "DELETE FROM mensalidade WHERE id_clienteFK = ?";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setInt(1, idCli);
 
-			
 			stat.execute();
 			stat.close();
+			
+			String sql2 = "DELETE FROM cliente WHERE id = ?";
+			
+			PreparedStatement stat2 = abrirConx.prepareStatement(sql2);
+			stat2.setInt(1, idCli);
+
+			
+			stat2.execute();
+			stat2.close();
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirma��o");
@@ -295,6 +313,31 @@ public class Ops {
 		return listaClientes;
 		
 	}
+	//obter id do cliente usando seu nome e primeiro campo de endereco
+	public int obterIdCliente(String nome, String endereco) {
+		int id = 0;
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT id FROM cliente WHERE nome = ? AND endereco1 = ?;";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setString(1, nome);
+			stat.setString(2, endereco);
+			ResultSet lCliente = stat.executeQuery();
+			
+			while(lCliente.next()) {
+				id = lCliente.getInt("id");
+			}
+			
+			stat.close();
+			
+		}  catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return id;
+	}
+	
 	//listar funcionarios
 	public ArrayList<Funcionario> lsFuncionarios() {
 		ArrayList<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
@@ -460,30 +503,16 @@ public class Ops {
 		}
 	}
 	
-	public void addClienteMensalidade(int id) {
-		try {
-			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
-			
-			String sql = "INSERT INTO mensalidade(id_clienteFK, mensalidade) VALUES (?, ?)";
-			
-			PreparedStatement stat = abrirConx.prepareStatement(sql);
-			stat.setInt(1, id);
-			stat.setDouble(2, 10.0);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 		
 	public void addValorMensalidade(int id, double valor) {
 		try {
-			
+			double valorAtual = obterValorMensalidade(id);
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
 			String sql = "INSERT INTO mensalidade(mensalidade) VALUES (?) WHERE id_clienteFK = ?";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
-			double valorAtual = obterValorMensalidade(id);
+			
 			stat.setDouble(1, (valorAtual + valor));
 			stat.setInt(2, id);
 			
