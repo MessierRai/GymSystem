@@ -27,16 +27,15 @@ public class GerarDoc {
 			String data = sdf.format(new Date(System.currentTimeMillis()));
 			
 			
-			doc = new Document(PageSize.A4, 72, 72, 72, 72); // definição das margens e do tam da folha
-			os = new FileOutputStream("out.pdf"); // nome do arquivo salvo, destino
-			PdfWriter.getInstance(doc, os); // getInstance está assoiando o documento ao stream de saída
+			doc = new Document(PageSize.A4, 72, 72, 72, 72); // definiï¿½ï¿½o das margens e do tam da folha
+			os = new FileOutputStream("Comprovante de Matricula - " + nome + ".pdf"); // nome do arquivo salvo, destino
+			PdfWriter.getInstance(doc, os); // getInstance estï¿½ assoiando o documento ao stream de saï¿½da
 			doc.open(); // abre o objeto documento
 			
 			Font fg = new Font(FontFamily.TIMES_ROMAN, 25);
 			Font fs = new Font(FontFamily.TIMES_ROMAN, 14);
 			Font t2 = new Font(FontFamily.TIMES_ROMAN, 18);
 			Font dcl = new Font(FontFamily.TIMES_ROMAN, 13);
-			Font dcl2 = new Font(FontFamily.TIMES_ROMAN, 13, Font.BOLD);
 			
 			Paragraph titulo = new Paragraph("GymSystem", fg);
 			titulo.setAlignment(Element.ALIGN_CENTER);
@@ -52,7 +51,7 @@ public class GerarDoc {
 			titulo2.setSpacingAfter(200);
 			doc.add(titulo2);
 			
-			Paragraph declaracao = new Paragraph("Afirmamos, para os fins que se fizerem necessÃ¡rios, que o cliente " + nome + ", estÃ¡ devidamente"
+			Paragraph declaracao = new Paragraph("Afirmamos, para os fins que se fizerem necessÃ¡rios, que o(a) cliente " + nome + ", estÃ¡ devidamente"
 					+ " matriculado nesta instituiÃ§Ã£o, sob o ID nÃºmero: " + id + ".", dcl);
 			
 			declaracao.setSpacingAfter(300);

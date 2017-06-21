@@ -79,7 +79,7 @@ public class ConsultaClientePopUp {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					new GerarDoc().gerarComprovanteMatricula(cl.getNome(), 4);
+					new GerarDoc().gerarComprovanteMatricula(cl.getNome(), cl.getId());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

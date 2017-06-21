@@ -202,7 +202,7 @@ public class Ops {
 			stat.close();
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Confirmação");
+			alert.setTitle("Confirmaï¿½ï¿½o");
 			alert.setHeaderText("Deletado com sucesso!");
 			alert.showAndWait();
 			
@@ -274,6 +274,7 @@ public class Ops {
 			ResultSet lCliente = stat.executeQuery();
 			
 			while(lCliente.next()) {
+				int id = lCliente.getInt("id");
 				String nome = lCliente.getString("nome");
 				String endereco1 = lCliente.getString("endereco1");
 				String endereco2 = lCliente.getString("endereco2");
@@ -283,7 +284,7 @@ public class Ops {
 				int id_personalFK = lCliente.getInt("id_personalFK");
 				String nomepersonal = new Ops().lsNomePersonal(id_personalFK);
 				
-				listaClientes = new Cliente(nome, endereco1, endereco2, dt_nasc, altura, turno, nomepersonal);
+				listaClientes = new Cliente(id, nome, endereco1, endereco2, dt_nasc, altura, turno, nomepersonal);
 			}
 			
 			stat.close();
@@ -470,7 +471,7 @@ public class Ops {
 			stat.setDouble(2, 10.0);
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 		
