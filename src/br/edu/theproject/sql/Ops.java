@@ -19,7 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class Ops {
-	
+	//cadastrar atendente
 	public void cdAtendente(Funcionario na) {
 		try {
 			
@@ -40,7 +40,7 @@ public class Ops {
 		}
 		
 	}
-	
+	//cadastrar gerente
 	public void cdGerente(Funcionario ng) {
 		try {
 			
@@ -74,7 +74,7 @@ public class Ops {
 		}
 		
 	}
-	
+	//cadastrar personal
 	public void cdPersonal(Funcionario prs) {
 		try {
 			
@@ -101,7 +101,7 @@ public class Ops {
 		
 	}
 	
-	
+	//cadastrar cliente
 	public void cdCliente(Cliente cl) {
 		try {
 			
@@ -137,7 +137,7 @@ public class Ops {
 		}
 		
 	}
-	
+	//cadastrar bens
 	public void cdBens(Bens bn) {
 		try {
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
@@ -161,7 +161,7 @@ public class Ops {
 		}
 		
 	}
-	
+	//cadastrar atividade
 	public void cdAtividade(Atividade atv) {
 		try {
 			
@@ -186,6 +186,7 @@ public class Ops {
 		}
 		
 	}
+	//apagar registro usuario
 	public void apagarRegistro(int idCli){
 		try {
 			
@@ -211,15 +212,15 @@ public class Ops {
 		
 	}
 	
-	
+	//gerar estatisticas
 	public void grStats() {
 		
 	}
-	
+	//gerar comprovante
 	public void grComprovante() {
 		
 	}
-	
+	//listar clientes
 	public ArrayList<Cliente> lsClientes() {
 		
 		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
@@ -293,7 +294,7 @@ public class Ops {
 		return listaClientes;
 		
 	}
-	
+	//listar funcionarios
 	public ArrayList<Funcionario> lsFuncionarios() {
 		ArrayList<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
 		
@@ -325,7 +326,7 @@ public class Ops {
 		return listaFuncionarios;
 		
 	}
-	
+	//listar personal's
 	public ArrayList<String> lsPersonal() {
 		ArrayList<String> personals = new ArrayList<String>();
 		
@@ -350,7 +351,7 @@ public class Ops {
 		}
 		return personals;
 	}
-	
+	//listar nome personal's
 	public String lsNomePersonal(int id) {
 		String nome = null;
 		try {
@@ -376,7 +377,7 @@ public class Ops {
 		return nome;
 		
 	}
-	
+	//listar bens
 	public ArrayList<Bens> lsBens() {
 		ArrayList<Bens> listaBens = new ArrayList<Bens>();
 		
@@ -405,7 +406,7 @@ public class Ops {
 		return listaBens;
 		
 	}
-	
+	//listar atividades
 	public ArrayList<Atividade> lsAtividade() {
 		
 		ArrayList<Atividade> listaAtividades = new ArrayList<Atividade>();
@@ -433,7 +434,7 @@ public class Ops {
 		return listaAtividades;
 		
 	}
-	
+	//associar cliente a atividade
 	public void cdCliAtiv(int idCli, int idAtiv) {
 		try {
 			
@@ -492,7 +493,7 @@ public class Ops {
 			e.printStackTrace();		
 		}
 	}
-	
+	//auto-explicativo
 	public double obterValorMensalidade(int id) { //o nome é auto-explicativo
 			double valor = 0;
 			try {
@@ -522,7 +523,7 @@ public class Ops {
 		}
 		return valor;
 	}
-	
+	//obter codigo do cargo baseado no id do funcionario
 	public int obterCargo(int id) {
 		int cod = 0;
 		try {
@@ -602,7 +603,7 @@ public class Ops {
 		return cod;
 		
 	}
-	
+	//obter id do cliente baseado no nome - EM TESTES
 	public int obterIdCli(String nome) {
 		int cod = 0;
 		try {
@@ -628,7 +629,7 @@ public class Ops {
 		return cod;
 		
 	}
-	
+	//cadastrar login do funcionario, chamado na hora do cadastro dele
 	public void cdLogin(int id) {
 		try {
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
@@ -647,7 +648,7 @@ public class Ops {
 			e.printStackTrace();
 		}
 	}
-	
+	//obtem a senha baseado no id do funcionario
 	public String getSenha(int id) {
 		String senha = null;
 		try {
@@ -672,10 +673,9 @@ public class Ops {
 		}
 		return senha;
 	}
-	
-	public void altSenha(String senha) {
+	//altera senha do funcionario, baseado no seu id, e recebendo a nova senha
+	public void altSenha(int idFunc, String senha) {
 		
-		int idAtual = 0;
 		try {
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
@@ -684,14 +684,14 @@ public class Ops {
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			
 			stat.setString(1, senha);
-			stat.setInt(2, idAtual);
+			stat.setInt(2, idFunc);
 			
 			stat.execute();
 			stat.close();
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirmação");
-			alert.setHeaderText("Cadastrado com sucesso!");
+			alert.setHeaderText("Alterado com sucesso!");
 			alert.showAndWait();
 			
 		} catch (Exception e) {

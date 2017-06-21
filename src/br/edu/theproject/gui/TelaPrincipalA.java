@@ -48,7 +48,6 @@ public class TelaPrincipalA extends Application {
 		
 		// Alterar - Menu
 		Menu alterar = new Menu("Atualizar");
-		MenuItem altSenha = new MenuItem("Alterar Senha");
 		MenuItem altCliente = new MenuItem("Atualizar Dados Cliente");
 		
 		// Sobre - Menu
@@ -140,21 +139,6 @@ public class TelaPrincipalA extends Application {
 				}
 			}
 		} );
-		//alterar senha
-		altSenha.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent aperto) {
-				alterarSenha as = new alterarSenha();
-				try {
-					fundoPrincipal.setCenter(malha);
-					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
-					as.alterar(malha);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		} );
 		
 		// volta ao inicio
 		inc.setOnAction(new EventHandler<ActionEvent>() {
@@ -179,7 +163,7 @@ public class TelaPrincipalA extends Application {
 		consulta.getItems().addAll(cnsCliente, cnsBens, cnsAtiv); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
 		
-		alterar.getItems().addAll(altSenha, altCliente);
+		alterar.getItems().addAll(altCliente);
 		
 		menuzin.getMenus().addAll(cadastrar, consulta, alterar, sobre); // add menua a barra
 		
