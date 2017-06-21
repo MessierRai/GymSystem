@@ -202,7 +202,7 @@ public class Ops {
 			stat.close();
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("ConfirmaÃ§Ã£o");
+			alert.setTitle("Confirmação");
 			alert.setHeaderText("Deletado com sucesso!");
 			alert.showAndWait();
 			
