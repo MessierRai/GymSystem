@@ -59,8 +59,7 @@ public class TelaPrincipalG extends Application {
 		// Alterar - Menu
 		Menu alterar = new Menu("Alterar");
 		MenuItem altSenha = new MenuItem("Alterar Senha");
-		MenuItem altCliente = new MenuItem("Atualizar Dados Cliente");
-		MenuItem apagarR = new MenuItem("Apagar Registro -Cliente");
+		MenuItem apagarR = new MenuItem("Apagar Registro-Cliente");
 		
 				
 		
@@ -330,7 +329,7 @@ public class TelaPrincipalG extends Application {
 		consulta.getItems().addAll(cnsCliente, lsCliente, cnsBens, cnsFunc, cnsAtiv, cnsEst); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
 		
-		alterar.getItems().addAll(altSenha, altCliente);
+		alterar.getItems().addAll(altSenha, apagarR);
 		
 		menuzin.getMenus().addAll(cadastrar, consulta, alterar,  sobre); // add menua a barra
 		

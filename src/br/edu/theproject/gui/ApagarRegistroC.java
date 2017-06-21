@@ -33,7 +33,7 @@ public class ApagarRegistroC {
 		TextField txtFld = new TextField();
 		GridPane.setConstraints(txtFld, 0, 3);
 		
-		Button btCds = new Button("Associar");
+		Button btCds = new Button("Apagar");
 		GridPane.setConstraints(btCds, 1, 4);
 			
 		btCds.setOnAction(new EventHandler<ActionEvent>() {
