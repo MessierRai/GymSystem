@@ -46,9 +46,10 @@ public class TelaPrincipalA extends Application {
 		MenuItem cnsBens = new MenuItem("Listar Bens");
 		MenuItem cnsAtiv = new MenuItem("Listar Atividade");
 		
-		// Alterar - Menu
-		Menu alterar = new Menu("Atualizar");
-		MenuItem altCliente = new MenuItem("Atualizar Dados Cliente");
+		/// Alterar - Menu
+		Menu alterar = new Menu("Alterar");
+		MenuItem altSenha = new MenuItem("Alterar Senha");
+		MenuItem apagarR = new MenuItem("Apagar Registro-Cliente");
 		
 		// Sobre - Menu
 		Menu sobre = new Menu("Sobre");
@@ -140,6 +141,21 @@ public class TelaPrincipalA extends Application {
 			}
 		} );
 		
+		apagarR.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				ApagarRegistroC as = new ApagarRegistroC();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					as.apagarR(malha);
+							
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
+		
 		// volta ao inicio
 		inc.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -163,7 +179,7 @@ public class TelaPrincipalA extends Application {
 		consulta.getItems().addAll(cnsCliente, cnsBens, cnsAtiv); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
 		
-		alterar.getItems().addAll(altCliente);
+		alterar.getItems().addAll(apagarR);
 		
 		menuzin.getMenus().addAll(cadastrar, consulta, alterar, sobre); // add menua a barra
 		
