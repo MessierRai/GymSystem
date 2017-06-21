@@ -157,6 +157,22 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		} );
+		//listar funcionarios
+		cnsFunc.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				ListarFuncionarios lf = new ListarFuncionarios();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					lf.lfuncionarios(malha);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
+		
 		//logoff
 		sair.setOnAction(new EventHandler<ActionEvent>() { //trata o evento de apertar no botão
 			@Override

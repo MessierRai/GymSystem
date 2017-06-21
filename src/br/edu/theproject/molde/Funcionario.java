@@ -32,10 +32,11 @@ public abstract class Funcionario {
 	public int getId_cargoFK() {
 		return id_cargoFK;
 	}
-
+	/*
 	@Override
 	public String toString() {
 		return "ID: " + this.getId() + " - Nome: " + this.getNome();
 	}
+	*/
 
 }
