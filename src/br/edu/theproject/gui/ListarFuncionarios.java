@@ -28,6 +28,7 @@ public class ListarFuncionarios {
 		GridPane.setConstraints(sds, 0, 0);
 		
 		TableView<Funcionario> tabela = new TableView<>();
+		tabela.autosize();
 		
 		ObservableList<Funcionario> dados = FXCollections.observableArrayList(new Ops().lsFuncionarios());
 		
@@ -42,11 +43,11 @@ public class ListarFuncionarios {
 		tabela.getColumns().add(colunaNome);
 		
 		TableColumn<Funcionario, String> colunaCpf = new TableColumn<>("CPF");
-		colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		colunaCpf.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 		tabela.getColumns().add(colunaCpf);
 		
-		TableColumn<Funcionario, String> colunaCargo = new TableColumn<>("Cargo");
-		colunaCargo.setCellValueFactory(new PropertyValueFactory<>("id_cargpFK"));
+		TableColumn<Funcionario, Integer> colunaCargo = new TableColumn<>("Cargo");
+		colunaCargo.setCellValueFactory(new PropertyValueFactory<>("id_cargoFK"));
 		tabela.getColumns().add(colunaCargo);
 			
 		GridPane.setConstraints(tabela, 0, 1);
