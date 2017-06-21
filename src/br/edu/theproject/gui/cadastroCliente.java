@@ -1,5 +1,7 @@
 package br.edu.theproject.gui;
 
+import java.util.ArrayList;
+
 import br.edu.theproject.molde.Cliente;
 import br.edu.theproject.sql.Ops;
 import javafx.collections.FXCollections;
@@ -83,13 +85,15 @@ public class cadastroCliente {
 		Label n1Lb5 = new Label("Turno : ");
 		GridPane.setConstraints(n1Lb5, 0, 11);
 		
-		ObservableList<String> turnolist = FXCollections.observableArrayList(
-			        "Manh„",
-			        "Tarde",
-			        "Noite"
+		ArrayList<String> horarios = new ArrayList<String> ();
+		horarios.add("Manha");
+		horarios.add("Tarde");
+		horarios.add("Noite");
+		
+		ObservableList<String> turnolist = FXCollections.observableArrayList(horarios
 			    );
 		ComboBox<String> turno = new ComboBox<String>(turnolist);
-        GridPane.setConstraints(turno, 0, 14);
+        GridPane.setConstraints(turno, 0, 12);
 		
 		Label n1Lb6 = new Label("Personal: ");
 		GridPane.setConstraints(n1Lb6, 0, 13);
@@ -123,7 +127,7 @@ public class cadastroCliente {
 				ToggleButton resEx = (ToggleButton) tgExame.getSelectedToggle();
 				if(resEx.getText().equals("Sim")) { // verifica se o botao selecionado cont√©m a palavra "Sim"s
 					int idPersonal = new Ops().obterId(personal.getValue());
-					Cliente c = new Cliente(txtFld.getText(), txtFld2.getText(), txtFld3.getText(), Integer.parseInt(nascDia.getText()), Integer.parseInt(nascMes.getText()), Integer.parseInt(nascAno.getText()), Double.parseDouble(txtFld5.getText()),turno, idPersonal);
+					Cliente c = new Cliente(txtFld.getText(), txtFld2.getText(), txtFld3.getText(), Integer.parseInt(nascDia.getText()), Integer.parseInt(nascMes.getText()), Integer.parseInt(nascAno.getText()), Double.parseDouble(txtFld5.getText()),turno.getValue(), idPersonal);
 					Ops s = new Ops();
 					
 					s.cdCliente(c);
