@@ -25,7 +25,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO funcionario(nome, cpf, id_cargoFK) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO funcionario(nome, cpf, id_cargoFK) VALUES (?, ?, ?);";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setString(1, na.getNome());
@@ -46,7 +46,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO funcionario(nome, cpf, id_cargoFK) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO funcionario(nome, cpf, id_cargoFK) VALUES (?, ?, ?);";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setString(1, ng.getNome());
@@ -80,7 +80,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO funcionario(nome, cpf, id_cargoFK) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO funcionario(nome, cpf, id_cargoFK) VALUES (?, ?, ?);";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setString(1, prs.getNome());
@@ -107,7 +107,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO cliente(nome, endereco1, endereco2, dt_nasc, altura, turno, id_personalFK) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO cliente(nome, endereco1, endereco2, dt_nasc, altura, turno, id_personalFK) VALUES (?, ?, ?, ?, ?, ?, ?);";
 			
 			Calendar data = Calendar.getInstance();
 			data.set(Calendar.YEAR, cl.getDt_nascAno());
@@ -127,7 +127,7 @@ public class Ops {
 			stat.close();
 			
 			int idCli = obterIdCliente(cl.getNome(), cl.getEndereco1());
-			
+			//add o cliente a lista de mensalidade
 			String sql2 = "INSERT INTO mensalidade(id_clienteFK, mensalidade) VALUES (?, ?);";
 			
 			PreparedStatement stat2 = abrirConx.prepareStatement(sql2);
@@ -153,7 +153,7 @@ public class Ops {
 		try {
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO bens(nome, quantidade) VALUES (?, ?)";
+			String sql = "INSERT INTO bens(nome, quantidade) VALUES (?, ?);";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setString(1, bn.getNome());
@@ -178,7 +178,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO atividade(nome, valor) VALUES (?, ?)";
+			String sql = "INSERT INTO atividade(nome, valor) VALUES (?, ?);";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setString(1, atv.getNome());
@@ -202,7 +202,7 @@ public class Ops {
 		try {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
-			String sql = "DELETE FROM mensalidade WHERE id_clienteFK = ?";
+			String sql = "DELETE FROM mensalidade WHERE id_clienteFK = ?;"; //deleta da lista de mensalidade, antes de deletar o cliente, questoes de dependencia do BD
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setInt(1, idCli);
@@ -210,14 +210,22 @@ public class Ops {
 			stat.execute();
 			stat.close();
 			
-			String sql2 = "DELETE FROM cliente WHERE id = ?";
+			String sql1 = "DELETE FROM cliente_atividade WHERE id_clienteFK = ?;"; //deleta da lista de associacoes com atividade, antes de deletar o cliente, questoes de dependencia do BD
 			
-			PreparedStatement stat2 = abrirConx.prepareStatement(sql2);
-			stat2.setInt(1, idCli);
+			PreparedStatement stat1 = abrirConx.prepareStatement(sql1);
+			stat1.setInt(1, idCli);
+
+			stat1.execute();
+			stat1.close();
+			
+			String sqlUltimo = "DELETE FROM cliente WHERE id = ?;";
+			
+			PreparedStatement statUltimo = abrirConx.prepareStatement(sqlUltimo);
+			statUltimo.setInt(1, idCli);
 
 			
-			stat2.execute();
-			stat2.close();
+			statUltimo.execute();
+			statUltimo.close();
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirma��o");
@@ -285,7 +293,7 @@ public class Ops {
 		try {
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "SELECT * FROM cliente WHERE id = ?";
+			String sql = "SELECT * FROM cliente WHERE id = ?;";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setInt(1, idCliente);
@@ -377,7 +385,7 @@ public class Ops {
 		try {
 			Connection abrirConex = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "SELECT nome FROM funcionario WHERE id_cargoFK = 3";
+			String sql = "SELECT nome FROM funcionario WHERE id_cargoFK = 3;";
 			
 			PreparedStatement stat = abrirConex.prepareStatement(sql);
 			
@@ -484,7 +492,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO cliente_atividade(id_clienteFK, id_atividadeFK) VALUES (?, ?)";
+			String sql = "INSERT INTO cliente_atividade(id_clienteFK, id_atividadeFK) VALUES (?, ?);";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setInt(1, idCli);
@@ -498,6 +506,12 @@ public class Ops {
 			alert.setHeaderText("Associado com sucesso!");
 			alert.showAndWait();
 			
+		}catch (MySQLIntegrityConstraintViolationException duplicate) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro");
+			alert.setHeaderText("Cliente ja usufrui desta atividade!");
+			alert.showAndWait();
+			
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
@@ -509,7 +523,7 @@ public class Ops {
 			double valorAtual = obterValorMensalidade(id);
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "INSERT INTO mensalidade(mensalidade) VALUES (?) WHERE id_clienteFK = ?";
+			String sql = "UPDATE mensalidade SET mensalidade = ? WHERE id_clienteFK = ?;";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			
@@ -530,7 +544,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "SELECT mensalidade FROM mensalidade WHERE id_clienteFK = ?";
+			String sql = "SELECT mensalidade FROM mensalidade WHERE id_clienteFK = ?;";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setInt(1, id);
@@ -542,11 +556,6 @@ public class Ops {
 			
 			stat.execute();
 			stat.close();
-			
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Confirmação");
-			alert.setHeaderText("Associado com sucesso!");
-			alert.showAndWait();
 			
 		} catch (Exception e) {
 			e.printStackTrace();		
