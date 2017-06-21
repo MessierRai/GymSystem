@@ -29,7 +29,7 @@ public class Sobre {
 		Text gb = new Text("    ");
 		GridPane.setConstraints(gb, 0, 1);
 		
-		Label textinho = new Label("App desenvolvido para fins avaliativos\ne educacionais na UFAL - Campus Arapiraca.\nQuer nos ajudar? Não questione como\nfoi feito, só aceite. :)");
+		Label textinho = new Label("App desenvolvido para fins avaliativos\ne educacionais na UFAL - Campus Arapiraca.\n :)");
 		GridPane.setConstraints(textinho, 0, 2);
 		
 		Text devsAP = new Text("Desenvolvido por:");

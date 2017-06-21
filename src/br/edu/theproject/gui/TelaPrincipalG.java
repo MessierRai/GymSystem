@@ -67,9 +67,11 @@ public class TelaPrincipalG extends Application {
 		MenuItem cnsEst = new MenuItem("Consultar estatisticas");
 		
 		// Alterar - Menu
-		Menu alterar = new Menu("Atualizar");
+		Menu alterar = new Menu("Alterar");
 		MenuItem altSenha = new MenuItem("Alterar Senha");
 		MenuItem altCliente = new MenuItem("Atualizar Dados Cliente");
+		MenuItem apagarR = new MenuItem("Apagar Registro -Cliente");
+		
 				
 		
 		// Sobre - Menu
@@ -218,7 +220,7 @@ public class TelaPrincipalG extends Application {
 			}
 		} );
 		
-		// cadstrar atividade
+		// cadastrar atividade
 		cdAtiv.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
@@ -280,6 +282,24 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		} );
+		
+		//Apagar registro de clientes
+		apagarR.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				ApagarRegistroC as = new ApagarRegistroC();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					as.apagarR(malha);
+							
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
+		
+		
 				
 		//para voltar a tela inicial
 		inc.setOnAction(new EventHandler<ActionEvent>() {

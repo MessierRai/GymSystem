@@ -186,6 +186,31 @@ public class Ops {
 		}
 		
 	}
+	public void apagarRegistro(int idCli){
+		try {
+			
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "DELETE FROM cliente  WHERE id=?";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setInt(1, idCli);
+
+			
+			stat.execute();
+			stat.close();
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Deletado com sucesso!");
+			alert.showAndWait();
+			
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		
+	}
+	
 	
 	public void grStats() {
 		
