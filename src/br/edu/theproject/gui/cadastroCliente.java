@@ -78,11 +78,18 @@ public class cadastroCliente {
 		TextField txtFld5 = new TextField();
 		GridPane.setConstraints(txtFld5, 0, 10);
 		
+		
+		
 		Label n1Lb5 = new Label("Turno : ");
 		GridPane.setConstraints(n1Lb5, 0, 11);
-			
-		TextField txtFld6 = new TextField();
-		GridPane.setConstraints(txtFld6, 0, 12);
+		
+		ObservableList<String> turnolist = FXCollections.observableArrayList(
+			        "Manh�",
+			        "Tarde",
+			        "Noite"
+			    );
+		ComboBox<String> turno = new ComboBox<String>(turnolist);
+        GridPane.setConstraints(turno, 0, 14);
 		
 		Label n1Lb6 = new Label("Personal: ");
 		GridPane.setConstraints(n1Lb6, 0, 13);
@@ -90,6 +97,8 @@ public class cadastroCliente {
 		ObservableList<String> personalList = FXCollections.observableList(new Ops().lsPersonal());
 		ComboBox<String> personal = new ComboBox<String>(personalList);
         GridPane.setConstraints(personal, 0, 14);
+        
+        
         
         Label exame = new Label("Os exames indicam aptidão fisica: ");
         GridPane.setConstraints(exame, 0, 15);
@@ -114,7 +123,7 @@ public class cadastroCliente {
 				ToggleButton resEx = (ToggleButton) tgExame.getSelectedToggle();
 				if(resEx.getText().equals("Sim")) { // verifica se o botao selecionado contém a palavra "Sim"s
 					int idPersonal = new Ops().obterId(personal.getValue());
-					Cliente c = new Cliente(txtFld.getText(), txtFld2.getText(), txtFld3.getText(), Integer.parseInt(nascDia.getText()), Integer.parseInt(nascMes.getText()), Integer.parseInt(nascAno.getText()), Double.parseDouble(txtFld5.getText()), txtFld6.getText(), idPersonal);
+					Cliente c = new Cliente(txtFld.getText(), txtFld2.getText(), txtFld3.getText(), Integer.parseInt(nascDia.getText()), Integer.parseInt(nascMes.getText()), Integer.parseInt(nascAno.getText()), Double.parseDouble(txtFld5.getText()),turno, idPersonal);
 					Ops s = new Ops();
 					
 					s.cdCliente(c);
@@ -130,7 +139,7 @@ public class cadastroCliente {
 			}
 		});
 		
-		malha.getChildren().addAll(sds, nLbl, txtFld, n1Lbl, n1Lb2, n1Lb3, n1Lb4, n1Lb5, n1Lb6, txtFld2, txtFld3, caixasNasc, txtFld5, txtFld6, btCds, personal, exame, escolhas);
+		malha.getChildren().addAll(sds, nLbl, txtFld, n1Lbl, n1Lb2, n1Lb3, n1Lb4, n1Lb5, n1Lb6, txtFld2, txtFld3, caixasNasc, txtFld5, btCds, personal, exame, escolhas);
 
 
 	}
