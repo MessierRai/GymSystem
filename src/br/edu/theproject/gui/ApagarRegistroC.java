@@ -1,5 +1,6 @@
 package br.edu.theproject.gui;
 
+import br.edu.theproject.sql.Ops;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -41,6 +42,7 @@ public class ApagarRegistroC {
 			@Override
 			public void handle(ActionEvent event) {
 				int idCli = Integer.parseInt(txtFld.getText());
+				new Ops().apagarRegistro(idCli);
 			}
 				
 		});

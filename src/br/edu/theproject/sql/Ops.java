@@ -192,7 +192,7 @@ public class Ops {
 			
 			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
 			
-			String sql = "DELETE FROM cliente  WHERE id=?";
+			String sql = "DELETE FROM cliente WHERE id=?";
 			
 			PreparedStatement stat = abrirConx.prepareStatement(sql);
 			stat.setInt(1, idCli);
@@ -698,20 +698,6 @@ public class Ops {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static void main(String[] args) {
-		/*
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.YEAR, 2015);
-		c.set(Calendar.MONTH, 04);
-		c.set(Calendar.DAY_OF_MONTH, 23);
-		
-		Cliente cl = new Cliente("Mais um ordinario", "Rua da Rainda de Gelo, 02", "Nárnia", 02, 05, 2015, 1.65f, "Noite", 12);
-		
-		cdCliente(cl);
-		*/
-		
 	}
 
 }

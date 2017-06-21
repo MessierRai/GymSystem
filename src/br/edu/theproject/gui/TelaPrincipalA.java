@@ -48,7 +48,6 @@ public class TelaPrincipalA extends Application {
 		
 		/// Alterar - Menu
 		Menu alterar = new Menu("Alterar");
-		MenuItem altSenha = new MenuItem("Alterar Senha");
 		MenuItem apagarR = new MenuItem("Apagar Registro-Cliente");
 		
 		// Sobre - Menu
