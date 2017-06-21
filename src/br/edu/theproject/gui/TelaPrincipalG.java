@@ -17,16 +17,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TelaPrincipalG extends Application {
-	
-	private int idAtual;
-	
-	public void setIdAtual(int id) {
-		this.idAtual = id;
-	}
-
-	public int getIdAtual() {
-		return idAtual;
-	}
 
 	@Override
 	public void start(Stage palco) throws Exception {

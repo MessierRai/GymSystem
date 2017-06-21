@@ -72,7 +72,6 @@ public class Login extends Application {
 					if(cdCargo == 1) { //decide para qual tela ir dependendo do cargo do dono do login (1: Gerente -- 2: Atendente)
 						TelaPrincipalG telaG = new TelaPrincipalG();
 						try {
-							telaG.setIdAtual(id);
 							telaG.start(primaryStage);
 							
 						} catch (Exception e) {
@@ -111,7 +110,6 @@ public class Login extends Application {
 						if(cdCargo == 1) { //decide para qual tela ir dependendo do cargo do dono do login (1: Gerente -- 2: Atendente)
 							TelaPrincipalG telaG = new TelaPrincipalG();
 							try {
-								telaG.setIdAtual(id);
 								telaG.start(primaryStage);
 								
 							} catch (Exception e) {

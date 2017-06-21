@@ -33,19 +33,19 @@ public class ApagarRegistroC {
 		TextField txtFld = new TextField();
 		GridPane.setConstraints(txtFld, 0, 3);
 		
-		 Button btCds = new Button("Associar");
-			GridPane.setConstraints(btCds, 1, 4);
+		Button btCds = new Button("Associar");
+		GridPane.setConstraints(btCds, 1, 4);
 			
-			btCds.setOnAction(new EventHandler<ActionEvent>() {
+		btCds.setOnAction(new EventHandler<ActionEvent>() {
 
-				@Override
-				public void handle(ActionEvent event) {
-					int idCli = Integer.parseInt(txtFld.getText());
-				}
+			@Override
+			public void handle(ActionEvent event) {
+				int idCli = Integer.parseInt(txtFld.getText());
+			}
 				
-			});
+		});
 	        
-	        malha.getChildren().addAll(sds, sds2, nLbl, txtFld, btCds);
+	    malha.getChildren().addAll(sds, sds2, nLbl, txtFld, btCds);
 	}
 
 	
