@@ -143,7 +143,7 @@ public class cadastroCliente {
 			}
 		});
 		
-		malha.getChildren().addAll(sds, nLbl, txtFld, n1Lbl, n1Lb2, n1Lb3, n1Lb4, n1Lb5, n1Lb6, txtFld2, txtFld3, caixasNasc, txtFld5, btCds, personal, exame, escolhas);
+		malha.getChildren().addAll(sds, nLbl, txtFld, n1Lbl, n1Lb2, n1Lb3, n1Lb4, n1Lb5, n1Lb6, txtFld2, txtFld3, caixasNasc, txtFld5, btCds,turno, personal, exame, escolhas);
 
 
 	}
