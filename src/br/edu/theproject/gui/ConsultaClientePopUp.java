@@ -1,9 +1,14 @@
 package br.edu.theproject.gui;
 
+
+import br.edu.theproject.doc.GerarDoc;
 import br.edu.theproject.molde.Cliente;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -66,14 +71,29 @@ public class ConsultaClientePopUp {
 		
 		vb2.getChildren().addAll(nomeCt, endereco1Ct, endereco2Ct, dt_nascCt, alturaCt, turnoCt, personalCt);
 		
+		Button btnGr = new Button("Gerar Comprovante\n de Matricula");
+		GridPane.setConstraints(btnGr, 0, 3);
+		
+		btnGr.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					new GerarDoc().gerarComprovanteMatricula(cl.getNome(), 4);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
         
-        malhaSobre.getChildren().addAll(vb1, vb2);
+        malhaSobre.getChildren().addAll(vb1, vb2, btnGr);
         
         bp.setTop(titulo);
         bp.setCenter(malhaSobre);
         
         
-        Scene cena = new Scene(bp, 330, 290);
+        Scene cena = new Scene(bp, 330, 320);
         palcoSobre.setScene(cena);
         palcoSobre.setTitle("Resultado");
         palcoSobre.show();
