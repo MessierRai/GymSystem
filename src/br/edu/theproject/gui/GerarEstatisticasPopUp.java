@@ -1,5 +1,6 @@
 package br.edu.theproject.gui;
 
+import br.edu.theproject.sql.Ops;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,6 +18,9 @@ public class GerarEstatisticasPopUp {
 		palcoStats.initModality(Modality.APPLICATION_MODAL);
         palcoStats.initOwner(palco);
         
+        Font a = Font.font(null, FontWeight.NORMAL, 14);
+        Font b = Font.font(null, FontWeight.BOLD, 15);
+        
         GridPane malhaStats = new GridPane();
 		malhaStats.setHgap(5);
 		malhaStats.setVgap(10);
@@ -26,38 +30,38 @@ public class GerarEstatisticasPopUp {
 		Scene cena = new Scene(malhaStats, 350, 400);
 		
 		Text um = new Text("Quantidade de Funcionarios: ");
-		um.setFont(Font.font(null, FontWeight.BOLD, 15));
+		um.setFont(b);
 		GridPane.setConstraints(um, 0, 2);
-		Text um2 = new Text("NUM");
-		um2.setFont(Font.font(null, FontWeight.NORMAL, 12));
+		Text um2 = new Text(String.valueOf(new Ops().qtdFuncionario()));
+		um2.setFont(a);
 		GridPane.setConstraints(um2, 0, 3);
 		
 		Text dois = new Text("Quantidade de Clientes: ");
-		dois.setFont(Font.font(null, FontWeight.BOLD, 15));
+		dois.setFont(b);
 		GridPane.setConstraints(dois, 0, 4);
-		Text dois2 = new Text("NUM");
-		dois2.setFont(Font.font(null, FontWeight.NORMAL, 12));
+		Text dois2 = new Text(String.valueOf(new Ops().qtdCliente()));
+		dois2.setFont(a);
 		GridPane.setConstraints(dois2, 0, 5);
 		
 		Text tres = new Text("Quantidade de Atividades Disponiveis: ");
-		tres.setFont(Font.font(null, FontWeight.BOLD, 15));
+		tres.setFont(b);
 		GridPane.setConstraints(tres, 0, 6);
-		Text tres2 = new Text("NUM");
-		tres2.setFont(Font.font(null, FontWeight.NORMAL, 12));
+		Text tres2 = new Text(String.valueOf(new Ops().qtdAtividade()));
+		tres2.setFont(a);
 		GridPane.setConstraints(tres2, 0, 7);
 		
 		Text quatro = new Text("Quantidade de Bens Adquiridos: ");
-		quatro.setFont(Font.font(null, FontWeight.BOLD, 15));
+		quatro.setFont(b);
 		GridPane.setConstraints(quatro, 0, 8);
-		Text quatro2 = new Text("NUM");
-		quatro2.setFont(Font.font(null, FontWeight.NORMAL, 12));
+		Text quatro2 = new Text(String.valueOf(new Ops().qtdBens()));
+		quatro2.setFont(a);
 		GridPane.setConstraints(quatro2, 0, 9);
 		
 		Text cinco = new Text("Quantia Movimentada Até Agora: ");
-		cinco.setFont(Font.font(null, FontWeight.BOLD, 15));
+		cinco.setFont(b);
 		GridPane.setConstraints(cinco, 0, 10);
-		Text cinco2 = new Text("NUM");
-		cinco2.setFont(Font.font(null, FontWeight.NORMAL, 12));
+		Text cinco2 = new Text("R$ " + String.format("%.2f", new Ops().quantiaMov()));
+		cinco2.setFont(a);
 		GridPane.setConstraints(cinco2, 0, 11);
 		
 		malhaStats.getChildren().addAll(um, um2, dois, dois2, tres, tres2, quatro, quatro2, cinco, cinco2);
