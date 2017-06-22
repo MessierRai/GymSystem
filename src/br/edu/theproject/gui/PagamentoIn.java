@@ -56,10 +56,9 @@ public class PagamentoIn {
 			btCds.setOnAction(new EventHandler<ActionEvent>() { 
 				@Override
 				public void handle(ActionEvent event) {
-					Pagamento pa = new Pagamento(txtFld.getText(), formaP.getValue()); //campo que vai pegar os valores 
 					Ops op = new Ops();
 						
-					//op.(pa);
+					op.cdsPagamento(Integer.parseInt(txtFld.getText()), formaP.getValue() );
 				}
 			});
 			
