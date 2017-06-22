@@ -2,7 +2,6 @@ package br.edu.theproject.gui;
 
 import java.util.ArrayList;
 
-import br.edu.theproject.molde.Pagamento;
 import br.edu.theproject.sql.Ops;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -61,6 +61,10 @@ public class TelaPrincipalG extends Application {
 		MenuItem altSenha = new MenuItem("Alterar Senha");
 		MenuItem apagarR = new MenuItem("Apagar Registro-Cliente");
 		
+		// Pagamento - menu
+		Menu pagar = new Menu ("Pagamento");
+		MenuItem pagamento = new MenuItem("Pagamento");
+		
 				
 		
 		// Sobre - Menu
@@ -311,6 +315,21 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		} );
+		//Pagamento
+		pagamento.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				PagamentoIn as = new PagamentoIn();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					as.pagar(malha);
+							
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} );
 		
 		
 				
@@ -336,10 +355,10 @@ public class TelaPrincipalG extends Application {
 		cdFunc.getItems().addAll(cdGer, cdAtd, cdPer);
 		consulta.getItems().addAll(cnsCliente, lsCliente, cnsBens, cnsFunc, cnsAtiv, cnsEst); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
-		
 		alterar.getItems().addAll(altSenha, apagarR);
-		
-		menuzin.getMenus().addAll(cadastrar, consulta, alterar,  sobre); // add menua a barra
+		pagar.getItems().addAll(pagamento);
+	
+		menuzin.getMenus().addAll(cadastrar, consulta, alterar,pagar,  sobre); // add menua a barra
 		
 		
 		fundoPrincipal.setTop(menuzin); // seta a barra de menu na borda de cima do BorderPane
