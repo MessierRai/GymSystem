@@ -762,5 +762,105 @@ public class Ops {
 			e.printStackTrace();
 		}
 	}
+	
+	public int qtdFuncionario() {
+		int qtd = 0;
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT COUNT(id) AS quantidade FROM funcionario;";
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet qtdAtual = stat.executeQuery();
+			
+			while(qtdAtual.next()) {
+				qtd = qtdAtual.getInt("quantidade");
+			}
+			
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return qtd;
+	}
+	
+	public int qtdCliente() {
+		int qtd = 0;
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT COUNT(id) AS quantidade FROM cliente;";
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet qtdAtual = stat.executeQuery();
+			
+			while(qtdAtual.next()) {
+				qtd = qtdAtual.getInt("quantidade");
+			}
+			
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return qtd;
+	}
+	
+	public int qtdAtividade() {
+		int qtd = 0;
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT COUNT(id) AS quantidade FROM atividade;";
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet qtdAtual = stat.executeQuery();
+			
+			while(qtdAtual.next()) {
+				qtd = qtdAtual.getInt("quantidade");
+			}
+			
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return qtd;
+	}
+	
+	public int qtdBens() {
+		int qtd = 0;
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT COUNT(id) AS quantidade FROM bens;";
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet qtdAtual = stat.executeQuery();
+			
+			while(qtdAtual.next()) {
+				qtd = qtdAtual.getInt("quantidade");
+			}
+			
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return qtd;
+	}
+	
+	public double quantiaMov() {
+		double quantia = 0;
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "SELECT SUM(mensalidade) AS quantia FROM pagamento;";
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			ResultSet qtdAtual = stat.executeQuery();
+			
+			while(qtdAtual.next()) {
+				quantia = qtdAtual.getDouble("quantia");
+			}
+			
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return quantia;
+	}
 
 }
