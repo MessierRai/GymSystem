@@ -228,22 +228,13 @@ public class Ops {
 			statUltimo.close();
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Confirma��o");
+			alert.setTitle("Confirmação");
 			alert.setHeaderText("Deletado com sucesso!");
 			alert.showAndWait();
 			
 		} catch (Exception e) {
 			e.printStackTrace();		
 		}
-		
-	}
-	
-	//gerar estatisticas
-	public void grStats() {
-		
-	}
-	//gerar comprovante
-	public void grComprovante() {
 		
 	}
 	//listar clientes

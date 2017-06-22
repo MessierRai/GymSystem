@@ -29,6 +29,10 @@ public class GerarEstatisticasPopUp {
 		
 		Scene cena = new Scene(malhaStats, 350, 400);
 		
+		Text zero = new Text("Estatisticas Gerais");
+		zero.setFont(Font.font(30));
+		GridPane.setConstraints(zero, 0, 0);
+		
 		Text um = new Text("Quantidade de Funcionarios: ");
 		um.setFont(b);
 		GridPane.setConstraints(um, 0, 2);
@@ -64,7 +68,7 @@ public class GerarEstatisticasPopUp {
 		cinco2.setFont(a);
 		GridPane.setConstraints(cinco2, 0, 11);
 		
-		malhaStats.getChildren().addAll(um, um2, dois, dois2, tres, tres2, quatro, quatro2, cinco, cinco2);
+		malhaStats.getChildren().addAll(zero, um, um2, dois, dois2, tres, tres2, quatro, quatro2, cinco, cinco2);
 		
 		palcoStats.setScene(cena);
 		palcoStats.setTitle("Estatisticas");

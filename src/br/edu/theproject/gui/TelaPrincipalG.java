@@ -37,7 +37,7 @@ public class TelaPrincipalG extends Application {
 		
 		//Cadastrar - Menu
 		Menu cadastrar = new Menu("Cadastrar"); // cria menu
-		Menu cdFunc = new Menu("Cadastrar Funcion�rio");
+		Menu cdFunc = new Menu("Cadastrar Funcionário");
 		MenuItem cdGer = new MenuItem("Gerente");
 		MenuItem cdAtd = new MenuItem("Atendente");// cria sub items do menu
 		MenuItem cdPer = new MenuItem("Personal");
@@ -52,7 +52,7 @@ public class TelaPrincipalG extends Application {
 		MenuItem cnsCliente = new MenuItem("Consultar Cliente");
 		MenuItem lsCliente = new MenuItem("Listar Clientes");
 		MenuItem cnsBens = new MenuItem("Listar Bens");
-		MenuItem cnsFunc = new MenuItem("Listar Funcion�rios");
+		MenuItem cnsFunc = new MenuItem("Listar Funcionários");
 		MenuItem cnsAtiv = new MenuItem("Listar Atividades");
 		MenuItem cnsEst = new MenuItem("Consultar estatisticas");
 		
@@ -319,7 +319,7 @@ public class TelaPrincipalG extends Application {
 		pagamento.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent aperto) {
-				PagamentoIn as = new PagamentoIn();
+				Pagamentoln as = new Pagamentoln();
 				try {
 					fundoPrincipal.setCenter(malha);
 					malha.getChildren().clear();  //se nao apagar a malha, dá merda.

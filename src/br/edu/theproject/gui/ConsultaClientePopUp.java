@@ -36,8 +36,10 @@ public class ConsultaClientePopUp {
 		malhaSobre.setPadding(new Insets(15, 15, 15, 15));
 		malhaSobre.setAlignment(Pos.CENTER);
 		
-		Text titulo = new Text("\n--Dados Cliente");
-		titulo.setFont(Font.font(20));
+		Font fonte = Font.font(null, FontWeight.BOLD, 13);
+		
+		Text titulo = new Text("\nDados Cliente");
+		titulo.setFont(Font.font(22));
 		
 		VBox vb1 = new VBox(10);
 		GridPane.setConstraints(vb1, 0, 2);
@@ -46,21 +48,21 @@ public class ConsultaClientePopUp {
 		GridPane.setConstraints(vb2, 1, 2);
 		
 		Text nome = new Text("Nome: ");
-		nome.setFont(Font.font(null, FontWeight.BOLD, 13));
+		nome.setFont(fonte);
 		Text endereco1 = new Text("Rua ");
-		endereco1.setFont(Font.font(null, FontWeight.BOLD, 13));
+		endereco1.setFont(fonte);
 		Text endereco2 = new Text("Bairro: ");
-		endereco2.setFont(Font.font(null, FontWeight.BOLD, 13));
+		endereco2.setFont(fonte);
 		Text dt_nasc = new Text("Nascimento: ");
-		dt_nasc.setFont(Font.font(null, FontWeight.BOLD, 13));
+		dt_nasc.setFont(fonte);
 		Text altura = new Text("Altura: ");
-		altura.setFont(Font.font(null, FontWeight.BOLD, 13));
+		altura.setFont(fonte);
 		Text turno = new Text("Turno: ");
-		turno.setFont(Font.font(null, FontWeight.BOLD, 13));
+		turno.setFont(fonte);
 		Text personal = new Text("Personal: ");
-		personal.setFont(Font.font(null, FontWeight.BOLD, 13));
+		personal.setFont(fonte);
 		Text mensalidade = new Text("Mensalidade: ");
-		mensalidade.setFont(Font.font(null, FontWeight.BOLD, 13));
+		mensalidade.setFont(fonte);
 		
 		vb1.getChildren().addAll(nome, endereco1, endereco2, dt_nasc, altura, turno, personal, mensalidade);
 		

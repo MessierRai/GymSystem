@@ -17,7 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class PagamentoIn {
+public class Pagamentoln {
 	
 	public void pagar(GridPane malha){
 		malha.setHgap(10);
@@ -49,7 +49,7 @@ public class PagamentoIn {
         GridPane.setConstraints(formaP, 0, 5);
         
         Button btCds = new Button("Salvar");
-		GridPane.setConstraints(btCds, 0, 17);
+		GridPane.setConstraints(btCds, 0, 10);
 		
 		
 			btCds.setOnAction(new EventHandler<ActionEvent>() { 
