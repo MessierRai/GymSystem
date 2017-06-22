@@ -194,6 +194,14 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		});
+		
+		cnsEst.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent aperto) {
+				new GerarEstatisticasPopUp().stats(palco);
+			}
+		});
+		
 		//consulta bens
 		cnsBens.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
