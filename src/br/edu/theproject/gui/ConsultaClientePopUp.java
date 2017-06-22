@@ -3,6 +3,7 @@ package br.edu.theproject.gui;
 
 import br.edu.theproject.doc.GerarDoc;
 import br.edu.theproject.molde.Cliente;
+import br.edu.theproject.sql.Ops;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -58,8 +59,10 @@ public class ConsultaClientePopUp {
 		turno.setFont(Font.font(null, FontWeight.BOLD, 13));
 		Text personal = new Text("Personal: ");
 		personal.setFont(Font.font(null, FontWeight.BOLD, 13));
+		Text mensalidade = new Text("Mensalidade: ");
+		mensalidade.setFont(Font.font(null, FontWeight.BOLD, 13));
 		
-		vb1.getChildren().addAll(nome, endereco1, endereco2, dt_nasc, altura, turno, personal);
+		vb1.getChildren().addAll(nome, endereco1, endereco2, dt_nasc, altura, turno, personal, mensalidade);
 		
 		Label nomeCt = new Label(cl.getNome());
 		Label endereco1Ct = new Label(cl.getEndereco1());
@@ -68,10 +71,11 @@ public class ConsultaClientePopUp {
 		Label alturaCt = new Label(String.valueOf(cl.getAltura()));
 		Label turnoCt = new Label(cl.getTurno());
 		Label personalCt = new Label(cl.getNomepersonal());
+		Label mensalidadeCt = new Label("R$ " + String.valueOf(new Ops().obterValorMensalidade(cl.getId())));
 		
-		vb2.getChildren().addAll(nomeCt, endereco1Ct, endereco2Ct, dt_nascCt, alturaCt, turnoCt, personalCt);
+		vb2.getChildren().addAll(nomeCt, endereco1Ct, endereco2Ct, dt_nascCt, alturaCt, turnoCt, personalCt, mensalidadeCt);
 		
-		Button btnGr = new Button("Gerar Comprovante\n de Matricula");
+		Button btnGr = new Button("Gerar Comprovante\n  de Matricula");
 		GridPane.setConstraints(btnGr, 0, 3);
 		
 		btnGr.setOnAction(new EventHandler<ActionEvent>() {
@@ -93,7 +97,7 @@ public class ConsultaClientePopUp {
         bp.setCenter(malhaSobre);
         
         
-        Scene cena = new Scene(bp, 330, 320);
+        Scene cena = new Scene(bp, 380, 350);
         palcoSobre.setScene(cena);
         palcoSobre.setTitle("Resultado");
         palcoSobre.show();

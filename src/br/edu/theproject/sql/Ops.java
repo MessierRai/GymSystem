@@ -517,6 +517,31 @@ public class Ops {
 		}
 	}
 	
+	//cadastra pagamentos
+	public void cdsPagamento(int id, String formaPgmt) {
+		try {
+			Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+			
+			String sql = "INSERT INTO pagamento(id_clienteFK, mensalidade, forma_pagamento, dt_pagamento) VALUES (?, ?, ?, ?);";
+			
+			PreparedStatement stat = abrirConx.prepareStatement(sql);
+			stat.setInt(1, id);
+			stat.setDouble(2, new Ops().obterValorMensalidade(id));
+			stat.setString(3, formaPgmt);
+			stat.setDate(4, new Date(System.currentTimeMillis()));
+			
+			stat.execute();
+			stat.close();
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmação");
+			alert.setHeaderText("Pago com sucesso!");
+			alert.showAndWait();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 		
 	public void addValorMensalidade(int id, double valor) {
 		try {
