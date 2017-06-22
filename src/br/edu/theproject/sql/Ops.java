@@ -237,6 +237,40 @@ public class Ops {
 		}
 		
 	}
+	
+	//apagar registro funcionario
+		public void apagarRegistroF(int idFunc){
+			try {
+				
+				Connection abrirConx = ConexaoSQL.getInstance().getConnection();
+				String sql = "DELETE FROM login WHERE id_funcionarioFK = ?;"; //deleta da lista de mensalidade, antes de deletar o cliente, questoes de dependencia do BD
+				
+				PreparedStatement stat = abrirConx.prepareStatement(sql);
+				stat.setInt(1, idFunc);
+
+				stat.execute();
+				stat.close();
+				
+				String sqlUltimo = "DELETE FROM funcionario WHERE id = ?;";
+				
+				PreparedStatement statUltimo = abrirConx.prepareStatement(sqlUltimo);
+				statUltimo.setInt(1, idFunc);
+
+				
+				statUltimo.execute();
+				statUltimo.close();
+				
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Confirmação");
+				alert.setHeaderText("Deletado com sucesso!");
+				alert.showAndWait();
+				
+			} catch (Exception e) {
+				e.printStackTrace();		
+			}
+			
+		}
+	
 	//listar clientes
 	public ArrayList<Cliente> lsClientes() {
 		

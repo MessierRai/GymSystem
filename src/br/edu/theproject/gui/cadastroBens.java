@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -42,13 +44,35 @@ public void cadastraBens(GridPane malha) {
 		GridPane.setConstraints(btCds, 0, 5);
 		
 		
-		btCds.setOnAction(new EventHandler<ActionEvent>() { //bloco de "GE"
+		btCds.setOnAction(new EventHandler<ActionEvent>() { 
 			@Override
 			public void handle(ActionEvent event) {
-				Bens na = new Bens(txtFld.getText(), Integer.parseInt(txtFld2.getText()));
-				Ops op = new Ops();
-					
-				op.cdBens(na);
+				if(txtFld.getText().isEmpty()) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Aviso");
+					alert.setHeaderText("Digite um nome!");
+					alert.showAndWait();
+				} else {
+					try {
+						Bens na = new Bens(txtFld.getText(), Integer.parseInt(txtFld2.getText()));
+						Ops op = new Ops();
+							
+						op.cdBens(na);
+					} catch (NumberFormatException e) {
+						if(txtFld2.getText().isEmpty()) {
+							Alert alert = new Alert(AlertType.INFORMATION);
+							alert.setTitle("Aviso");
+							alert.setHeaderText("Digite uma quantidade!");
+							alert.showAndWait();
+						}else {
+							Alert alert = new Alert(AlertType.WARNING);
+							alert.setTitle("Erro");
+							alert.setHeaderText("Digite uma quantidade válida");
+							alert.showAndWait();
+						}
+						
+					}
+				}
 			}
 		});
 		

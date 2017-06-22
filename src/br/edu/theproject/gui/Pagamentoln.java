@@ -9,10 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -55,9 +57,25 @@ public class Pagamentoln {
 			btCds.setOnAction(new EventHandler<ActionEvent>() { 
 				@Override
 				public void handle(ActionEvent event) {
-					Ops op = new Ops();
+					if(txtFld.getText().isEmpty()) { // verifica se o campo de ID está vazio
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setHeaderText("Campo ID vazio");
+						alert.showAndWait();
 						
-					op.cdsPagamento(Integer.parseInt(txtFld.getText()), formaP.getValue() );
+					}else {
+						try {
+							Ops op = new Ops();
+							op.cdsPagamento(Integer.parseInt(txtFld.getText()), formaP.getValue());
+						} catch (NullPointerException npe) {
+							Alert alert = new Alert(AlertType.ERROR);
+							alert.setTitle("Erro");
+							alert.setHeaderText("Digite um ID válido");
+							alert.showAndWait();
+						}catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					
 				}
 			});
 			

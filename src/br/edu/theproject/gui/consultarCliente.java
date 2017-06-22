@@ -60,6 +60,8 @@ public class consultarCliente {
 						alert.setTitle("Erro");
 						alert.setHeaderText("Digite um ID válido");
 						alert.showAndWait();
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 				}
 				

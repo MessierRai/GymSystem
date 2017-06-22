@@ -60,6 +60,7 @@ public class TelaPrincipalG extends Application {
 		Menu alterar = new Menu("Alterar");
 		MenuItem altSenha = new MenuItem("Alterar Senha");
 		MenuItem apagarR = new MenuItem("Apagar Registro-Cliente");
+		MenuItem apagarR2 = new MenuItem("Apagar Registro-Funcionario");
 		
 		// Pagamento - menu
 		Menu pagar = new Menu ("Pagamento");
@@ -315,6 +316,24 @@ public class TelaPrincipalG extends Application {
 				}
 			}
 		} );
+		
+		apagarR2.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				ApagarRegistroF as = new ApagarRegistroF();
+				try {
+					fundoPrincipal.setCenter(malha);
+					malha.getChildren().clear();  //se nao apagar a malha, dá merda.
+					as.apagarRF(malha);
+							
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		
 		//Pagamento
 		pagamento.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -355,7 +374,7 @@ public class TelaPrincipalG extends Application {
 		cdFunc.getItems().addAll(cdGer, cdAtd, cdPer);
 		consulta.getItems().addAll(cnsCliente, lsCliente, cnsBens, cnsFunc, cnsAtiv, cnsEst); // add sub items ao menu
 		sobre.getItems().addAll(sobreNois, sair); // add sub items ao menu
-		alterar.getItems().addAll(altSenha, apagarR);
+		alterar.getItems().addAll(altSenha, apagarR, apagarR2);
 		pagar.getItems().addAll(pagamento);
 	
 		menuzin.getMenus().addAll(cadastrar, consulta, alterar,pagar,  sobre); // add menua a barra

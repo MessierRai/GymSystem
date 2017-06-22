@@ -8,10 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -54,12 +56,32 @@ public class AssociarCliAtiv {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				int idCli = Integer.parseInt(txtFld.getText());
-				Atividade atvAtual = ativs.getValue();
-				int idAtiv = atvAtual.getId();
+				if(txtFld.getText().isEmpty()) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Aviso");
+					alert.setHeaderText("Digite um ID!");
+					alert.showAndWait();
+				} else {
+					try {
+						int idCli = Integer.parseInt(txtFld.getText());
+						Atividade atvAtual = ativs.getValue();
+						int idAtiv = atvAtual.getId();
+						
+						new Ops().cdCliAtiv(idCli, idAtiv);
+						new Ops().addValorMensalidade(idCli, atvAtual.getValor()); // atualiza valor da atual mensalidade o cliente
+					} catch (NumberFormatException e) {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("Erro");
+						alert.setHeaderText("Digite um ID válido!");
+						alert.showAndWait();
+					} catch (NullPointerException e) {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("Erro");
+						alert.setHeaderText("Selecione uma atividade!");
+						alert.showAndWait();
+					}
+				}
 				
-				new Ops().cdCliAtiv(idCli, idAtiv);
-				new Ops().addValorMensalidade(idCli, atvAtual.getValor()); // atualiza valor da atual mensalidade o cliente
 				
 			}
 		});

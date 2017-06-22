@@ -28,7 +28,6 @@ public class ListarFuncionarios {
 		GridPane.setConstraints(sds, 0, 0);
 		
 		TableView<Funcionario> tabela = new TableView<>();
-		tabela.autosize();
 		
 		ObservableList<Funcionario> dados = FXCollections.observableArrayList(new Ops().lsFuncionarios());
 		

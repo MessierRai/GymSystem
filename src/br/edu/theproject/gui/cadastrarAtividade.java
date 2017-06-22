@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -46,10 +48,31 @@ public class cadastrarAtividade {
 		btCds.setOnAction(new EventHandler<ActionEvent>() { //bloco de "GE"
 			@Override
 			public void handle(ActionEvent event) {
-				Atividade na = new Atividade(txtFld.getText(), Double.parseDouble(txtFld2.getText()));
-				Ops op = new Ops();
-					
-				op.cdAtividade(na);
+				if(txtFld.getText().isEmpty()) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Aviso");
+					alert.setHeaderText("Digite um nome!");
+					alert.showAndWait();
+				} else {
+					try {
+						Atividade na = new Atividade(txtFld.getText(), Double.parseDouble(txtFld2.getText()));
+						Ops op = new Ops();
+							
+						op.cdAtividade(na);
+					} catch (NumberFormatException e) {
+						if(txtFld2.getText().isEmpty()) {
+							Alert alert = new Alert(AlertType.INFORMATION);
+							alert.setTitle("Aviso");
+							alert.setHeaderText("Digite um valor!");
+							alert.showAndWait();
+						} else {
+							Alert alert = new Alert(AlertType.WARNING);
+							alert.setTitle("Erro");
+							alert.setHeaderText("Digite um válido!");
+							alert.showAndWait();
+						}
+					}
+				}
 			}
 		});
 		

@@ -121,20 +121,39 @@ public class cadastroCliente {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				ToggleButton resEx = (ToggleButton) tgExame.getSelectedToggle();
-				if(resEx.getText().equals("Sim")) { // verifica se o botao selecionado contém a palavra "Sim"s
-					int idPersonal = new Ops().obterId(personal.getValue());
-					Cliente c = new Cliente(txtFld.getText(), txtFld2.getText(), txtFld3.getText(), Integer.parseInt(nascDia.getText()), Integer.parseInt(nascMes.getText()), Integer.parseInt(nascAno.getText()), Double.parseDouble(txtFld5.getText()),turno.getValue(), idPersonal);
-					Ops s = new Ops();
-					
-					s.cdCliente(c);
-				} else {
+				if(txtFld.getText().isEmpty() || txtFld2.getText().isEmpty() || txtFld3.getText().isEmpty() || txtFld5.getText().isEmpty()) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("Informação");
-					alert.setHeaderText("Cliente não apto fisicamente.");
+					alert.setHeaderText("Há campos vazios");
 					alert.showAndWait();
+				}else {
+					ToggleButton resEx = (ToggleButton) tgExame.getSelectedToggle();
+					if(resEx.getText().equals("Sim")) { // verifica se o botao selecionado contém a palavra "Sim"s
+						try {
+							int idPersonal = new Ops().obterId(personal.getValue());
+							Cliente c = new Cliente(txtFld.getText(), txtFld2.getText(), txtFld3.getText(), Integer.parseInt(nascDia.getText()), Integer.parseInt(nascMes.getText()), Integer.parseInt(nascAno.getText()), Double.parseDouble(txtFld5.getText()),turno.getValue(), idPersonal);
+							Ops s = new Ops();
+							
+							s.cdCliente(c);
+						} catch (NumberFormatException e) {
+							Alert alert = new Alert(AlertType.WARNING);
+							alert.setTitle("Informação");
+							alert.setHeaderText("Campos 'Data de Nascimento' e 'Altura' só aceitam números!");
+							alert.showAndWait();
+						} catch (NullPointerException npe) {
+							Alert alert = new Alert(AlertType.WARNING);
+							alert.setTitle("Informação");
+							alert.setHeaderText("Há campos vazios");
+							alert.showAndWait();
+						}
+						
+					} else {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("Informação");
+						alert.setHeaderText("Cliente não apto fisicamente.");
+						alert.showAndWait();
+					}
 				}
-				
 			}
 		});
 		
