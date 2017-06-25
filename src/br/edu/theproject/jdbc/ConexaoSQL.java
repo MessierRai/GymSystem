@@ -8,6 +8,8 @@ public class ConexaoSQL {
 	
 	private static ConexaoSQL conexaoSQL;
 	
+	private ConexaoSQL() {}
+	
 	public static ConexaoSQL getInstance() {
 		if(conexaoSQL == null) {
 			conexaoSQL = new ConexaoSQL();
